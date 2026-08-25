@@ -69,7 +69,6 @@ export const AVAILABLE_IMAGES = new Set<string>([
 
   'about-story',
   'about-approach',
-  'cta-band',
 ]);
 
 export function hasImage(slot?: string): slot is string {

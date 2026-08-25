@@ -40,7 +40,7 @@ const OUT_DIR = path.join(ROOT, 'public', 'images');
 const PICKS = [
   // Home — the three pillars
   { slot: 'pillar-physiotherapy', id: '18252', frame: 2, shows: 'Physiotherapist working on a patient’s back' },
-  { slot: 'pillar-recovery', id: '12901', frame: 3, shows: 'Shoulder treatment on the table' },
+  { slot: 'pillar-recovery', id: '13041', frame: 2, shows: 'Soft-tissue treatment, from below the table' },
   { slot: 'pillar-training', id: '5561', frame: 3, shows: 'Therapist coaching a patient through loaded rehab' },
 
   // Recovery — every modality carries a picture. Four are the real thing:
@@ -83,9 +83,9 @@ const PICKS = [
   },
   {
     slot: 'recovery-compression',
-    id: '13710',
-    frame: 3,
-    shows: 'Treatment of the lower legs and feet',
+    id: '36710',
+    frame: 2,
+    shows: 'Treatment of the calves and lower legs',
     approx: 'the region compression treats — the boots are not in shot',
   },
   { slot: 'recovery-redlight', id: '52164', frame: 0, shows: 'Red-light therapy panel in use' },
@@ -93,7 +93,7 @@ const PICKS = [
   {
     slot: 'recovery-needling',
     id: '13062',
-    frame: 2,
+    frame: 4,
     shows: 'Clinician working a specific point in the treatment room',
     approx: 'the needles are not in shot',
   },
@@ -113,13 +113,13 @@ const PICKS = [
   { slot: 'physio-manual-therapy', id: '18265', frame: 3, shows: 'Hands-on treatment at the shoulder' },
   { slot: 'physio-joint-mobilization', id: '13063', frame: 1, shows: 'Graded joint technique on the table' },
   { slot: 'physio-soft-tissue', id: '13061', frame: 0, shows: 'Soft-tissue work, overhead' },
-  { slot: 'physio-myofascial', id: '13065', frame: 2, shows: 'Fascial work along the back' },
-  { slot: 'physio-exercise', id: '5561', frame: 1, shows: 'Prescribed exercise with the clinician' },
-  { slot: 'physio-assessment', id: '49541', frame: 0, shows: 'Movement assessment on the table' },
+  { slot: 'physio-myofascial', id: '13060', frame: 2, shows: 'Fascial work along the back' },
+  { slot: 'physio-exercise', id: '5475', frame: 2, shows: 'Clinician guiding a patient through assisted walking' },
+  { slot: 'physio-assessment', id: '36704', frame: 2, shows: 'Clinician explaining findings on a spine model' },
   { slot: 'physio-injury-rehab', id: '12901', frame: 2, shows: 'Treatment after a shoulder injury' },
   { slot: 'physio-sports-rehab', id: '49150', frame: 1, shows: 'Rehabilitation session with an athlete' },
-  { slot: 'physio-post-op', id: '5493', frame: 3, shows: 'Staged rehab with a clinician' },
-  { slot: 'physio-functional', id: '13042', frame: 3, shows: 'Working through a functional movement' },
+  { slot: 'physio-post-op', id: '5478', frame: 2, shows: 'Patient recovering with crutches' },
+  { slot: 'physio-functional', id: '18268', frame: 2, shows: 'Working a patient through a movement' },
   {
     slot: 'physio-return-to-sport',
     id: '4755',
@@ -133,29 +133,28 @@ const PICKS = [
   { slot: 'training-stretch', id: '13042', frame: 1, shows: 'Assisted neck and shoulder stretch' },
   { slot: 'training-mobility', id: '36393', frame: 2, shows: 'Therapist moving a patient’s neck through range' },
   { slot: 'training-glutes', id: '49542', frame: 1, shows: 'Hands-on work at the hip and knee' },
-  { slot: 'training-hiit', id: '49150', frame: 2, shows: 'Physiotherapeutic session with a young athlete' },
+  { slot: 'training-hiit', id: '49149', frame: 1, shows: 'Suspension-assisted session, working hard' },
 
   // Sports performance
-  { slot: 'performance-agility', id: '49149', frame: 1, shows: 'Suspension-assisted therapy session' },
+  { slot: 'performance-agility', id: '49148', frame: 3, shows: 'Therapeutic session with an athlete' },
   { slot: 'performance-mobility', id: '18266', frame: 2, shows: 'Standing neck mobilisation' },
   { slot: 'performance-strength', id: '49151', frame: 2, shows: 'Back and neck treatment in suspension' },
-  { slot: 'performance-hyrox', id: '49148', frame: 3, shows: 'Therapeutic session with an athlete' },
+  { slot: 'performance-hyrox', id: '13039', frame: 1, shows: 'Shoulder and upper-back treatment' },
   { slot: 'performance-marathon', id: '13710', frame: 2, shows: 'Physiotherapist working on a runner’s foot' },
 
   // The facility
   { slot: 'facility-physio-1', id: '18254', frame: 1, shows: 'Treatment room, therapist at the table' },
   { slot: 'facility-physio-2', id: '13059', frame: 2, shows: 'Physical therapy on a patient’s back' },
-  { slot: 'facility-recovery-1', id: '13061', frame: 2, shows: 'Soft-tissue treatment, overhead view' },
-  { slot: 'facility-recovery-2', id: '13063', frame: 2, shows: 'Manual therapy on the treatment table' },
+  { slot: 'facility-recovery-1', id: '49543', frame: 2, shows: 'Neck work on the treatment bed' },
+  { slot: 'facility-recovery-2', id: '11539', frame: 2, shows: 'A treatment session in progress' },
   { slot: 'facility-recovery-3', id: '49539', frame: 2, shows: 'Neck work by a physiotherapist' },
-  { slot: 'facility-performance-1', id: '49150', frame: 3, shows: 'Athlete session in the therapy room' },
+  { slot: 'facility-performance-1', id: '18267', frame: 2, shows: 'The treatment room, therapist at work' },
   { slot: 'facility-performance-2', id: '13164', frame: 2, shows: 'Clinic room with assessment equipment' },
-  { slot: 'facility-pt-1', id: '46426', frame: 2, shows: 'Posture assessment' },
+  { slot: 'facility-pt-1', id: '27698', frame: 2, shows: 'A one-to-one session in the treatment space' },
 
-  // About + CTA band
-  { slot: 'about-story', id: '13039', frame: 2, shows: 'Hands-on work at a patient’s shoulders' },
-  { slot: 'about-approach', id: '49541', frame: 3, shows: 'Assessment in progress' },
-  { slot: 'cta-band', id: '18265', frame: 1, shows: 'Hands-on treatment, close' },
+  // About
+  { slot: 'about-story', id: '12926', frame: 2, shows: 'Inside the centre' },
+  { slot: 'about-approach', id: '46426', frame: 3, shows: 'Posture and movement assessment' },
 ];
 
 const UA = {

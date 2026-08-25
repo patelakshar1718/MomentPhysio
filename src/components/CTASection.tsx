@@ -11,7 +11,7 @@ type CTASectionProps = {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  /** Background image slot; omit for a flat charcoal band. */
+  /** Background image slot; omitted by default — the band reads as flat teal. */
   image?: string;
 };
 
@@ -23,7 +23,7 @@ export function CTASection({
   primaryHref = '/contact#book',
   secondaryLabel = 'Explore Our Services',
   secondaryHref = '/programs',
-  image = 'cta-band',
+  image,
 }: CTASectionProps) {
   return (
     <section data-surface="teal" className="relative isolate">

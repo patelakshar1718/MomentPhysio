@@ -49,7 +49,7 @@ If you only shoot a handful, shoot these first — they carry the most weight:
 | 2 | `team-1` … `team-4` | Trust. Currently placeholder blocks |
 | 3 | `recovery-icebath`, `recovery-sauna`, `recovery-tecar` | Your most distinctive equipment, currently missing |
 | 4 | `facility-*` | Proof the centres actually look like this |
-| 5 | `about-story`, `about-approach`, `cta-band` | Carry the About page and every CTA band |
+| 5 | `about-story`, `about-approach` | Carry the About page |
 
 Heroes are **video**, not photography — see [VIDEO.md](VIDEO.md) for those.
 
@@ -88,7 +88,10 @@ Heroes are **video**, not photography — see [VIDEO.md](VIDEO.md) for those.
 | `facility-pt-1` | About page | Dedicated 1-to-1 training space |
 | `about-story` | About page | Wide shot inside the centre |
 | `about-approach` | About page, physio page | Coaching a client |
-| `cta-band` | CTA bands | Atmospheric, works behind text |
+
+Every slot uses a **different clip** — no two cards on the site share a picture,
+and each one was picked for that service in particular. The CTA band carries no
+photograph on purpose: it reads as flat teal.
 
 ## Stand-in images — replace these first
 
