@@ -15,12 +15,14 @@ export const AVAILABLE_IMAGES = new Set<string>([
   'pillar-recovery',
   'pillar-training',
 
-  // Sports massage is the one recovery modality with honest photography.
-  // Ice bath, sauna, TECAR, red light, cupping, dry needling, compression and
-  // IASTM are icon-led by design: a picture of a therapist working on a back
-  // captioned "Ice Bath" would mislead, and padding the grid matters less than
-  // that. Add slot names here once real photos of the equipment exist.
+  // Sports massage and the sauna are the two recovery modalities with honest
+  // imagery. Ice bath, TECAR, red light, cupping, dry needling, compression,
+  // percussive therapy and IASTM are icon-led by design: a picture of a
+  // therapist working on a back captioned "Ice Bath" would mislead, and padding
+  // the grid matters less than that. <ServiceCard> draws a designed icon panel
+  // for them instead. Add slot names here once real photos of the kit exist.
   'recovery-massage',
+  'recovery-sauna',
 
   'training-pt',
   'training-strength',

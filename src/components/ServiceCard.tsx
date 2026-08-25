@@ -1,5 +1,6 @@
 import { site } from '@/config/site';
 import type { Service } from '@/data/types';
+import { hasImage } from '@/lib/images';
 import { Icon } from './Icon';
 import { Media } from './Media';
 
@@ -8,6 +9,39 @@ type ServiceCardProps = {
   /** "detailed" adds the photo and an expandable panel; "compact" is a plain tile. */
   variant?: 'detailed' | 'compact';
 };
+
+/**
+ * Photo when the slot has one, a designed icon panel when it does not.
+ *
+ * Most recovery modalities have no honest stock photograph — nothing in a free
+ * library shows a TECAR unit, compression boots or dry needling, and the near
+ * misses misrepresent the treatment. Rather than leave a hole or borrow an
+ * unrelated picture, those cards get their own icon on a soft field, which
+ * reads as a decision rather than a missing asset. Drop the real photo into
+ * public/images and list the slot in src/lib/images.ts and it becomes a photo
+ * card with no other change.
+ */
+function CardVisual({ service, aspect }: { service: Service; aspect: string }) {
+  if (hasImage(service.image)) {
+    return (
+      <Media
+        slot={service.image}
+        alt={`${service.title} at ${site.name}`}
+        aspect={aspect}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      />
+    );
+  }
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`media-round flex items-center justify-center bg-elev-2 ${aspect}`}
+    >
+      <Icon name={service.icon} size={40} className="text-accent-text" />
+    </div>
+  );
+}
 
 /**
  * Uses a native <details>/<summary> disclosure rather than React state.
@@ -21,33 +55,26 @@ export function ServiceCard({ service, variant = 'detailed' }: ServiceCardProps)
 
   if (variant === 'compact') {
     return (
-      <div className="card card-hover group flex h-full flex-col p-6">
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-accent-text">
-          <Icon name={service.icon} size={24} />
-        </span>
-        <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em]">{service.title}</h3>
-        {service.fullName && (
-          <p className="mt-1 text-xs text-subtle">{service.fullName}</p>
-        )}
-        <p className="mt-3 text-sm leading-relaxed text-muted">{service.summary}</p>
-        {service.note && (
-          <p className="mt-4 rounded-xl bg-elev-2 p-3 text-xs leading-relaxed text-subtle">
-            {service.note}
-          </p>
-        )}
+      <div className="card card-hover group flex h-full flex-col p-3">
+        <CardVisual service={service} aspect="aspect-[16/10]" />
+
+        <div className="flex flex-1 flex-col px-3 pt-5 pb-3">
+          <h3 className="text-lg font-semibold tracking-[-0.02em]">{service.title}</h3>
+          {service.fullName && <p className="mt-1 text-xs text-subtle">{service.fullName}</p>}
+          <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{service.summary}</p>
+          {service.note && (
+            <p className="mt-4 rounded-xl bg-elev-2 p-3 text-xs leading-relaxed text-subtle">
+              {service.note}
+            </p>
+          )}
+        </div>
       </div>
     );
   }
 
   return (
     <article className="card card-hover group flex h-full flex-col p-3">
-      <Media
-        slot={service.image}
-        alt={`${service.title} at ${site.name}`}
-        aspect="aspect-[16/11]"
-        placeholderLabel={service.title}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-      />
+      <CardVisual service={service} aspect="aspect-[16/11]" />
 
       <div className="flex flex-1 flex-col px-3 pt-5 pb-3">
         <div className="flex items-start justify-between gap-4">

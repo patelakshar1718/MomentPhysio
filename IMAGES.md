@@ -60,7 +60,8 @@ Heroes are **video**, not photography — see [VIDEO.md](VIDEO.md) for those.
 | `pillar-physiotherapy` | Homepage, physio page | Treatment room, therapist working |
 | `pillar-recovery` | Homepage, recovery page | Recovery zone wide shot |
 | `pillar-training` | Homepage, PT page | Performance floor in use |
-| `recovery-massage` | Recovery page | Sports massage in progress |
+| `recovery-massage` | Recovery page, homepage | Sports massage in progress |
+| `recovery-sauna` | Recovery page, homepage | Sauna cabin — CC0 stock, not your room |
 | `training-pt` | PT page | Therapist and client, 1-to-1 |
 | `training-strength` | PT page | Loaded rehab under supervision |
 | `training-stretch` | PT page | Assisted stretching |
@@ -82,21 +83,27 @@ Heroes are **video**, not photography — see [VIDEO.md](VIDEO.md) for those.
 
 ## Empty slots — no royalty-free photography exists for these
 
-These render as designed placeholder blocks. There is no honest placeholder for
-specialist recovery equipment — a photo of a therapist working on a back
-captioned "Ice Bath" would mislead a patient — so these need **your** photos:
+`<ServiceCard>` draws the modality's own icon on a soft field for these, so the
+grid reads as a decision rather than a missing asset. There is no honest stock
+photograph of any of them — no free library has one, and the nearest matches
+misrepresent the treatment (the only free "ice bath" footage is a man wading
+into a hole in a frozen lake, which is the opposite of supervised immersion at a
+controlled temperature). These need **your** photos:
 
-`recovery-theragun` · `recovery-iastm` · `recovery-sauna` ·
+`recovery-icebath` · `recovery-theragun` · `recovery-iastm` ·
 `recovery-compression` · `recovery-redlight` · `recovery-cupping` ·
-`recovery-needling` · `recovery-tecar` · `recovery-icebath` ·
+`recovery-needling` · `recovery-tecar` ·
 `team-1` · `team-2` · `team-3` · `team-4`
+
+Each one becomes a photo card the moment you drop `public/images/<slot>.jpg` in
+and add the slot to `AVAILABLE_IMAGES` — no other change needed. Photograph the
+kit **in use, with a patient**, not the machine on its own.
 
 Team photos are deliberately left empty: inventing faces for a named clinical
 team is not a placeholder, it is a false claim about who treats people.
 
-The recovery cards are icon-led by design, so they look intentional while empty —
-but photographs of the actual TECAR unit, compression boots, red-light panel and
-sauna would be a significant upgrade.
+Photographs of your actual ice bath, TECAR unit, compression boots and red-light
+panel are the single biggest upgrade left on the site.
 
 ## Shooting guidance
 

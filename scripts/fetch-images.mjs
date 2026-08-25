@@ -31,6 +31,11 @@ const OUT_DIR = path.join(ROOT, 'public', 'images');
  *         is what keeps two slots from the same clip looking different.
  * shows → what is in the picture, so a reviewer can check the claim without
  *         opening the file.
+ *
+ * A pick may instead carry `openverse` — an Openverse image id, CC0 only. That
+ * is for equipment shots no physiotherapy clip contains (the sauna cabin), and
+ * it is downloaded through Openverse's own proxy because the origin CDNs reject
+ * hotlinking.
  */
 const PICKS = [
   // Home — the three pillars
@@ -38,10 +43,17 @@ const PICKS = [
   { slot: 'pillar-recovery', id: '12901', frame: 3, shows: 'Shoulder treatment on the table' },
   { slot: 'pillar-training', id: '5561', frame: 3, shows: 'Therapist coaching a patient through loaded rehab' },
 
-  // Recovery — only the modality we can show honestly. Ice bath, sauna, TECAR,
-  // red light, cupping, needling, compression and IASTM stay icon-led rather
-  // than illustrated with a picture of something else.
+  // Recovery — only the two modalities we can show honestly. TECAR, red light,
+  // cupping, dry needling, compression, IASTM, percussive therapy and the ice
+  // bath stay icon-led: no free library has an accurate picture of any of them,
+  // and the nearest matches misrepresent the service (a man wading into a
+  // frozen lake is not supervised cold-water immersion). Shoot those in-house.
   { slot: 'recovery-massage', id: '18256', frame: 1, shows: 'Sports massage by a physiotherapist' },
+  {
+    slot: 'recovery-sauna',
+    openverse: 'afbbc065-fb7e-4d9c-a9e5-d2eead71fd22',
+    shows: 'Sauna cabin interior (CC0, rawpixel)',
+  },
 
   // Personal training — therapist-led, never a gym floor
   { slot: 'training-pt', id: '49541', frame: 2, shows: 'Physio assessing a client on the table' },
@@ -96,8 +108,14 @@ function frameUrl({ id, frame }) {
   return `https://assets.mixkit.co/videos/${id}/${id}-thumb-720-${frame}.jpg`;
 }
 
+function sourceUrl(pick) {
+  return pick.openverse
+    ? `https://api.openverse.org/v1/images/${pick.openverse}/thumb/?full_size=true`
+    : frameUrl(pick);
+}
+
 async function download(pick, dest) {
-  const res = await fetch(frameUrl(pick), { headers: UA });
+  const res = await fetch(sourceUrl(pick), { headers: UA });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
   if (buf.length < 5000) throw new Error(`suspiciously small (${buf.length}b)`);
@@ -152,8 +170,10 @@ async function main() {
       '',
       '| Slot | Shows | Clip |',
       '| --- | --- | --- |',
-      ...credits.map(
-        (c) => `| \`${c.slot}\` | ${c.shows} | [${c.id}](https://mixkit.co/free-stock-video/) |`,
+      ...credits.map((c) =>
+        c.openverse
+          ? `| \`${c.slot}\` | ${c.shows} | [Openverse ${c.openverse.slice(0, 8)}](https://openverse.org/image/${c.openverse}) |`
+          : `| \`${c.slot}\` | ${c.shows} | [${c.id}](https://mixkit.co/free-stock-video/) |`,
       ),
       '',
     ].join('\n');
