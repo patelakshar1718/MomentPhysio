@@ -32,6 +32,19 @@ export const AVAILABLE_IMAGES = new Set<string>([
   'recovery-needling',
   'recovery-tecar',
 
+  // Physiotherapy techniques — one frame each, on the physiotherapy page.
+  'physio-manual-therapy',
+  'physio-joint-mobilization',
+  'physio-soft-tissue',
+  'physio-myofascial',
+  'physio-exercise',
+  'physio-assessment',
+  'physio-injury-rehab',
+  'physio-sports-rehab',
+  'physio-post-op',
+  'physio-functional',
+  'physio-return-to-sport',
+
   'training-pt',
   'training-strength',
   'training-stretch',

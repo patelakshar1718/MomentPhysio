@@ -70,6 +70,7 @@ Heroes are **video**, not photography — see [VIDEO.md](VIDEO.md) for those.
 | `recovery-cupping` | Recovery page, homepage | Cups under suction |
 | `recovery-needling` | Recovery page, homepage | **A needling session** — stand-in shows point work |
 | `recovery-tecar` | Recovery page, homepage | **Your TECAR unit on a patient** — stand-in is another device |
+| `physio-manual-therapy` … `physio-return-to-sport` | Physiotherapy page | One frame per technique — 11 slots, see `CREDITS.md` |
 | `training-pt` | PT page | Therapist and client, 1-to-1 |
 | `training-strength` | PT page | Loaded rehab under supervision |
 | `training-stretch` | PT page | Assisted stretching |

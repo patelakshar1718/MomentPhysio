@@ -7,6 +7,7 @@ import { Media } from '@/components/Media';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
 import { SectionHeader } from '@/components/SectionHeader';
+import { ServiceCard } from '@/components/ServiceCard';
 import { StepTimeline } from '@/components/StepTimeline';
 import { faqs } from '@/data/faqs';
 import { physioConditions, physioProcess, physiotherapyServices } from '@/data/physiotherapy';
@@ -103,18 +104,8 @@ export default function PhysiotherapyPage() {
 
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {physiotherapyServices.map((service, i) => (
-              <Reveal key={service.id} delay={(i % 3) * 60} className="card p-7">
-                <div className="flex items-start justify-between gap-4">
-                  <Icon name={service.icon} size={24} className="text-accent-text" />
-                  <span className="index-num text-sm text-subtle">{service.id}</span>
-                </div>
-                <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em]">{service.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{service.summary}</p>
-                {service.note && (
-                  <p className="mt-4 border-l-2 border-accent-line pl-3 text-xs leading-relaxed text-subtle">
-                    {service.note}
-                  </p>
-                )}
+              <Reveal key={service.id} delay={(i % 3) * 60}>
+                <ServiceCard service={service} variant="compact" />
               </Reveal>
             ))}
           </div>

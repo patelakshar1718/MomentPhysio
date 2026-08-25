@@ -28,6 +28,17 @@ rather than the equipment named on the card. Replace those first.
 | `recovery-cupping` | Cupping cups under suction on the back | — | [32861](https://mixkit.co/free-stock-video/) |
 | `recovery-needling` | Clinician working a specific point in the treatment room | the needles are not in shot | [13062](https://mixkit.co/free-stock-video/) |
 | `recovery-tecar` | An energy-delivery applicator against the skin | a device applied to skin, not a TECAR unit | [27898](https://mixkit.co/free-stock-video/) |
+| `physio-manual-therapy` | Hands-on treatment at the shoulder | — | [18265](https://mixkit.co/free-stock-video/) |
+| `physio-joint-mobilization` | Graded joint technique on the table | — | [13063](https://mixkit.co/free-stock-video/) |
+| `physio-soft-tissue` | Soft-tissue work, overhead | — | [13061](https://mixkit.co/free-stock-video/) |
+| `physio-myofascial` | Fascial work along the back | — | [13065](https://mixkit.co/free-stock-video/) |
+| `physio-exercise` | Prescribed exercise with the clinician | — | [5561](https://mixkit.co/free-stock-video/) |
+| `physio-assessment` | Movement assessment on the table | — | [49541](https://mixkit.co/free-stock-video/) |
+| `physio-injury-rehab` | Treatment after a shoulder injury | — | [12901](https://mixkit.co/free-stock-video/) |
+| `physio-sports-rehab` | Rehabilitation session with an athlete | — | [49150](https://mixkit.co/free-stock-video/) |
+| `physio-post-op` | Staged rehab with a clinician | — | [5493](https://mixkit.co/free-stock-video/) |
+| `physio-functional` | Working through a functional movement | — | [13042](https://mixkit.co/free-stock-video/) |
+| `physio-return-to-sport` | An athlete’s ankle being treated outdoors | — | [4755](https://mixkit.co/free-stock-video/) |
 | `training-pt` | Physio assessing a client on the table | — | [49541](https://mixkit.co/free-stock-video/) |
 | `training-strength` | Loaded rehab with a clinician | — | [5493](https://mixkit.co/free-stock-video/) |
 | `training-stretch` | Assisted neck and shoulder stretch | — | [13042](https://mixkit.co/free-stock-video/) |

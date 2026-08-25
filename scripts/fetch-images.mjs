@@ -105,6 +105,28 @@ const PICKS = [
     approx: 'a device applied to skin, not a TECAR unit',
   },
 
+  // Physiotherapy techniques — one frame each, matched to what the technique
+  // actually looks like: hands-on work for manual and soft-tissue, a graded
+  // joint technique, assisted exercise for therapeutic exercise, an assessment
+  // for movement assessment, and an athlete's ankle outdoors for return to
+  // sport. All from the same physiotherapy pool as the rest of the site.
+  { slot: 'physio-manual-therapy', id: '18265', frame: 3, shows: 'Hands-on treatment at the shoulder' },
+  { slot: 'physio-joint-mobilization', id: '13063', frame: 1, shows: 'Graded joint technique on the table' },
+  { slot: 'physio-soft-tissue', id: '13061', frame: 0, shows: 'Soft-tissue work, overhead' },
+  { slot: 'physio-myofascial', id: '13065', frame: 2, shows: 'Fascial work along the back' },
+  { slot: 'physio-exercise', id: '5561', frame: 1, shows: 'Prescribed exercise with the clinician' },
+  { slot: 'physio-assessment', id: '49541', frame: 0, shows: 'Movement assessment on the table' },
+  { slot: 'physio-injury-rehab', id: '12901', frame: 2, shows: 'Treatment after a shoulder injury' },
+  { slot: 'physio-sports-rehab', id: '49150', frame: 1, shows: 'Rehabilitation session with an athlete' },
+  { slot: 'physio-post-op', id: '5493', frame: 3, shows: 'Staged rehab with a clinician' },
+  { slot: 'physio-functional', id: '13042', frame: 3, shows: 'Working through a functional movement' },
+  {
+    slot: 'physio-return-to-sport',
+    id: '4755',
+    frame: 1,
+    shows: 'An athlete’s ankle being treated outdoors',
+  },
+
   // Personal training — therapist-led, never a gym floor
   { slot: 'training-pt', id: '49541', frame: 2, shows: 'Physio assessing a client on the table' },
   { slot: 'training-strength', id: '5493', frame: 2, shows: 'Loaded rehab with a clinician' },

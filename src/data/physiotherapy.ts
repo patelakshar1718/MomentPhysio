@@ -14,6 +14,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Hands-on treatment applied to joints and soft tissue, selected according to what the assessment shows rather than a fixed protocol.',
     icon: 'hand',
+    image: 'physio-manual-therapy',
   },
   {
     id: '02',
@@ -21,6 +22,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Graded joint techniques designed to address restriction and support better movement at a specific segment.',
     icon: 'joint',
+    image: 'physio-joint-mobilization',
   },
   {
     id: '03',
@@ -28,6 +30,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Targeted soft-tissue work directed at the muscles and structures identified during assessment.',
     icon: 'massage',
+    image: 'physio-soft-tissue',
   },
   {
     id: '04',
@@ -35,6 +38,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Fascial techniques used where restriction appears to extend beyond a single muscle or region.',
     icon: 'wave',
+    image: 'physio-myofascial',
   },
   {
     id: '05',
@@ -42,6 +46,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Prescribed exercise that carries the treatment forward between sessions — the part that makes hands-on work hold.',
     icon: 'activity',
+    image: 'physio-exercise',
   },
   {
     id: '06',
@@ -49,6 +54,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Structured screening of how you move, load and compensate, forming the baseline every plan is built from.',
     icon: 'clipboard',
+    image: 'physio-assessment',
   },
   {
     id: '07',
@@ -56,6 +62,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Staged rehabilitation progressing from early management through to loading, control and capacity.',
     icon: 'shield',
+    image: 'physio-injury-rehab',
   },
   {
     id: '08',
@@ -63,6 +70,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Rehabilitation built around the specific demands of your sport, position and competitive calendar.',
     icon: 'trophy',
+    image: 'physio-sports-rehab',
   },
   {
     id: '09',
@@ -71,6 +79,7 @@ export const physiotherapyServices: Service[] = [
       'Progressive rehabilitation following surgery, delivered within the protocol and timeline set by your surgeon.',
     note: 'Delivered in line with your surgeon’s protocol. Please bring your operative notes and any post-operative instructions.',
     icon: 'refresh',
+    image: 'physio-post-op',
   },
   {
     id: '10',
@@ -78,6 +87,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Bridging the gap between clinical exercise and the real movements your work, sport and daily life demand.',
     icon: 'layers',
+    image: 'physio-functional',
   },
   {
     id: '11',
@@ -85,6 +95,7 @@ export const physiotherapyServices: Service[] = [
     summary:
       'Criteria-led progression through the final stages — speed, change of direction, contact and sport-specific load.',
     icon: 'run',
+    image: 'physio-return-to-sport',
   },
 ];
 
