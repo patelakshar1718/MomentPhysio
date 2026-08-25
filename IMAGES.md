@@ -61,7 +61,15 @@ Heroes are **video**, not photography — see [VIDEO.md](VIDEO.md) for those.
 | `pillar-recovery` | Homepage, recovery page | Recovery zone wide shot |
 | `pillar-training` | Homepage, PT page | Performance floor in use |
 | `recovery-massage` | Recovery page, homepage | Sports massage in progress |
-| `recovery-sauna` | Recovery page, homepage | Sauna cabin — CC0 stock, not your room |
+| `recovery-theragun` | Recovery page, homepage | **Your Theragun on a patient** — stand-in shows manual massage |
+| `recovery-iastm` | Recovery page, homepage | **Your IASTM tools in use** — stand-in shows hands-on work |
+| `recovery-icebath` | Recovery page, homepage | **Your ice bath** — stand-in is cold water itself |
+| `recovery-sauna` | Recovery page, homepage | **Your sauna** — stand-in is a stock cabin |
+| `recovery-compression` | Recovery page, homepage | **Your compression boots on** — stand-in shows leg treatment |
+| `recovery-redlight` | Recovery page, homepage | Red-light panel in use |
+| `recovery-cupping` | Recovery page, homepage | Cups under suction |
+| `recovery-needling` | Recovery page, homepage | **A needling session** — stand-in shows point work |
+| `recovery-tecar` | Recovery page, homepage | **Your TECAR unit on a patient** — stand-in is another device |
 | `training-pt` | PT page | Therapist and client, 1-to-1 |
 | `training-strength` | PT page | Loaded rehab under supervision |
 | `training-stretch` | PT page | Assisted stretching |
@@ -81,29 +89,33 @@ Heroes are **video**, not photography — see [VIDEO.md](VIDEO.md) for those.
 | `about-approach` | About page, physio page | Coaching a client |
 | `cta-band` | CTA bands | Atmospheric, works behind text |
 
-## Empty slots — no royalty-free photography exists for these
+## Stand-in images — replace these first
 
-`<ServiceCard>` draws the modality's own icon on a soft field for these, so the
-grid reads as a decision rather than a missing asset. There is no honest stock
-photograph of any of them — no free library has one, and the nearest matches
-misrepresent the treatment (the only free "ice bath" footage is a man wading
-into a hole in a frozen lake, which is the opposite of supervised immersion at a
-controlled temperature). These need **your** photos:
+Ten recovery cards all carry a picture, but six of them are **stand-ins**: they
+show the technique or the body region rather than the equipment named on the
+card, because no free library has a photograph of a TECAR head, compression
+boots, an IASTM tool, a Theragun in a clinician's hand or a dry-needling
+session. `public/images/CREDITS.md` marks exactly which, in a "Stand-in" column.
 
-`recovery-icebath` · `recovery-theragun` · `recovery-iastm` ·
-`recovery-compression` · `recovery-redlight` · `recovery-cupping` ·
-`recovery-needling` · `recovery-tecar` ·
+Nothing contradicts the copy — the only free "ice bath" footage is a man wading
+into a hole cut in a frozen lake, the opposite of the supervised, temperature
+controlled immersion that card describes, so the ice-bath card shows cold water
+itself instead.
+
+Photograph each modality **in use, with a patient**, and drop the file over the
+existing one:
+
+`recovery-icebath` · `recovery-tecar` · `recovery-compression` ·
+`recovery-theragun` · `recovery-iastm` · `recovery-needling` · `recovery-sauna`
+
+## Empty slots — no honest placeholder exists
+
 `team-1` · `team-2` · `team-3` · `team-4`
-
-Each one becomes a photo card the moment you drop `public/images/<slot>.jpg` in
-and add the slot to `AVAILABLE_IMAGES` — no other change needed. Photograph the
-kit **in use, with a patient**, not the machine on its own.
 
 Team photos are deliberately left empty: inventing faces for a named clinical
 team is not a placeholder, it is a false claim about who treats people.
-
-Photographs of your actual ice bath, TECAR unit, compression boots and red-light
-panel are the single biggest upgrade left on the site.
+`<ServiceCard>` and `<TeamCard>` both draw a designed panel for an unlisted
+slot, so an empty slot always looks intentional rather than broken.
 
 ## Shooting guidance
 

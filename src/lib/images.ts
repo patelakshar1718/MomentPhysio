@@ -15,14 +15,22 @@ export const AVAILABLE_IMAGES = new Set<string>([
   'pillar-recovery',
   'pillar-training',
 
-  // Sports massage and the sauna are the two recovery modalities with honest
-  // imagery. Ice bath, TECAR, red light, cupping, dry needling, compression,
-  // percussive therapy and IASTM are icon-led by design: a picture of a
-  // therapist working on a back captioned "Ice Bath" would mislead, and padding
-  // the grid matters less than that. <ServiceCard> draws a designed icon panel
-  // for them instead. Add slot names here once real photos of the kit exist.
+  // Every recovery modality carries a picture. Four are the real thing; the
+  // rest show the technique or the body region rather than the device, because
+  // no free library has a photograph of the kit. public/images/CREDITS.md marks
+  // which is which — replace those with photos of your own equipment first.
+  // <ServiceCard> still falls back to a designed icon panel for any slot that
+  // is not listed here.
   'recovery-massage',
+  'recovery-theragun',
+  'recovery-iastm',
+  'recovery-icebath',
   'recovery-sauna',
+  'recovery-compression',
+  'recovery-redlight',
+  'recovery-cupping',
+  'recovery-needling',
+  'recovery-tecar',
 
   'training-pt',
   'training-strength',

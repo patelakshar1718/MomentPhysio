@@ -43,16 +43,66 @@ const PICKS = [
   { slot: 'pillar-recovery', id: '12901', frame: 3, shows: 'Shoulder treatment on the table' },
   { slot: 'pillar-training', id: '5561', frame: 3, shows: 'Therapist coaching a patient through loaded rehab' },
 
-  // Recovery — only the two modalities we can show honestly. TECAR, red light,
-  // cupping, dry needling, compression, IASTM, percussive therapy and the ice
-  // bath stay icon-led: no free library has an accurate picture of any of them,
-  // and the nearest matches misrepresent the service (a man wading into a
-  // frozen lake is not supervised cold-water immersion). Shoot those in-house.
+  // Recovery — every modality carries a picture. Four are the real thing:
+  // sports massage, the sauna cabin, cupping cups under suction and a red-light
+  // panel. The rest are the closest honest stand-in, because no free library has
+  // a photograph of a TECAR head, compression boots, a dry-needling session or
+  // an IASTM tool: they show the technique or the body region rather than the
+  // device, and `approx` records that so nobody mistakes them for the kit. The
+  // one thing avoided outright is a picture that contradicts the copy — the
+  // only free "ice bath" footage is a man wading into a hole in a frozen lake,
+  // the opposite of supervised immersion at a controlled temperature, so the
+  // ice-bath card gets cold water itself instead.
   { slot: 'recovery-massage', id: '18256', frame: 1, shows: 'Sports massage by a physiotherapist' },
+  {
+    slot: 'recovery-theragun',
+    id: '18255',
+    frame: 2,
+    shows: 'Focused soft-tissue work on a patient’s back',
+    approx: 'manual massage — the percussive device is not in shot',
+  },
+  {
+    slot: 'recovery-iastm',
+    id: '49540',
+    frame: 2,
+    shows: 'Clinician working along the tissue by hand',
+    approx: 'the assisting instrument is not in shot',
+  },
+  {
+    slot: 'recovery-icebath',
+    id: '1612',
+    frame: 1,
+    shows: 'Ice and cold water, close',
+    approx: 'the water itself, not a plunge tub',
+  },
   {
     slot: 'recovery-sauna',
     openverse: 'afbbc065-fb7e-4d9c-a9e5-d2eead71fd22',
     shows: 'Sauna cabin interior (CC0, rawpixel)',
+    approx: 'a sauna, but not yours',
+  },
+  {
+    slot: 'recovery-compression',
+    id: '13710',
+    frame: 3,
+    shows: 'Treatment of the lower legs and feet',
+    approx: 'the region compression treats — the boots are not in shot',
+  },
+  { slot: 'recovery-redlight', id: '52164', frame: 0, shows: 'Red-light therapy panel in use' },
+  { slot: 'recovery-cupping', id: '32861', frame: 2, shows: 'Cupping cups under suction on the back' },
+  {
+    slot: 'recovery-needling',
+    id: '13062',
+    frame: 2,
+    shows: 'Clinician working a specific point in the treatment room',
+    approx: 'the needles are not in shot',
+  },
+  {
+    slot: 'recovery-tecar',
+    id: '27898',
+    frame: 2,
+    shows: 'An energy-delivery applicator against the skin',
+    approx: 'a device applied to skin, not a TECAR unit',
   },
 
   // Personal training — therapist-led, never a gym floor
@@ -168,13 +218,17 @@ async function main() {
       '',
       '**Replace these with real photography of the centre before launch — see IMAGES.md.**',
       '',
-      '| Slot | Shows | Clip |',
-      '| --- | --- | --- |',
-      ...credits.map((c) =>
-        c.openverse
-          ? `| \`${c.slot}\` | ${c.shows} | [Openverse ${c.openverse.slice(0, 8)}](https://openverse.org/image/${c.openverse}) |`
-          : `| \`${c.slot}\` | ${c.shows} | [${c.id}](https://mixkit.co/free-stock-video/) |`,
-      ),
+      'A “stand-in” note means the picture shows the technique or the body region',
+      'rather than the equipment named on the card. Replace those first.',
+      '',
+      '| Slot | Shows | Stand-in | Source |',
+      '| --- | --- | --- | --- |',
+      ...credits.map((c) => {
+        const source = c.openverse
+          ? `[Openverse ${c.openverse.slice(0, 8)}](https://openverse.org/image/${c.openverse})`
+          : `[${c.id}](https://mixkit.co/free-stock-video/)`;
+        return `| \`${c.slot}\` | ${c.shows} | ${c.approx ?? '—'} | ${source} |`;
+      }),
       '',
     ].join('\n');
     await writeFile(path.join(OUT_DIR, 'CREDITS.md'), md, 'utf8');
