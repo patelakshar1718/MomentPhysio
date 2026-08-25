@@ -1,0 +1,26 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# env
+.env
+.env.local
+.env*.local
+
+# Note: src/data/generated/reviews.json is intentionally COMMITTED. It is
+# refreshed by `npm run reviews` at build time, but keeping the last-known-good
+# copy in the repo means a build still succeeds if the Google API is down or
+# the API key is missing.
+
+# misc
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+next-env.d.ts
+.vercel
+.netlify
+
+# Raw video downloads used by scripts/fetch-videos.mjs
+.video-tmp/
