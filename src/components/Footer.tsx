@@ -16,7 +16,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer data-surface="teal">
+    <footer data-surface="stone">
       <div className="container-x py-14 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Brand */}

@@ -11,6 +11,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '01',
     title: 'Manual Therapy',
+    tagline: 'Hands-on joint and soft tissue treatment',
     summary:
       'Hands-on treatment applied to joints and soft tissue, selected according to what the assessment shows rather than a fixed protocol.',
     icon: 'hand',
@@ -19,6 +20,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '02',
     title: 'Joint Mobilization',
+    tagline: 'Graded techniques for a restricted joint',
     summary:
       'Graded joint techniques designed to address restriction and support better movement at a specific segment.',
     icon: 'joint',
@@ -27,6 +29,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '03',
     title: 'Soft Tissue Techniques',
+    tagline: 'Targeted work on the muscles under load',
     summary:
       'Targeted soft-tissue work directed at the muscles and structures identified during assessment.',
     icon: 'massage',
@@ -35,6 +38,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '04',
     title: 'Myofascial Techniques',
+    tagline: 'For restriction spanning more than one muscle',
     summary:
       'Fascial techniques used where restriction appears to extend beyond a single muscle or region.',
     icon: 'wave',
@@ -43,6 +47,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '05',
     title: 'Therapeutic Exercise',
+    tagline: 'The prescribed work between sessions',
     summary:
       'Prescribed exercise that carries the treatment forward between sessions — the part that makes hands-on work hold.',
     icon: 'activity',
@@ -51,6 +56,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '06',
     title: 'Movement Assessment',
+    tagline: 'The baseline every plan is built from',
     summary:
       'Structured screening of how you move, load and compensate, forming the baseline every plan is built from.',
     icon: 'clipboard',
@@ -59,6 +65,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '07',
     title: 'Injury Rehabilitation',
+    tagline: 'Staged progression back to load and capacity',
     summary:
       'Staged rehabilitation progressing from early management through to loading, control and capacity.',
     icon: 'shield',
@@ -67,6 +74,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '08',
     title: 'Sports Rehabilitation',
+    tagline: 'Built around your sport and your calendar',
     summary:
       'Rehabilitation built around the specific demands of your sport, position and competitive calendar.',
     icon: 'trophy',
@@ -75,6 +83,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '09',
     title: 'Post-Operative Rehabilitation',
+    tagline: 'Progressive recovery to your surgeon’s protocol',
     summary:
       'Progressive rehabilitation following surgery, delivered within the protocol and timeline set by your surgeon.',
     note: 'Delivered in line with your surgeon’s protocol. Please bring your operative notes and any post-operative instructions.',
@@ -84,6 +93,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '10',
     title: 'Functional Rehabilitation',
+    tagline: 'Clinical exercise to real-world movement',
     summary:
       'Bridging the gap between clinical exercise and the real movements your work, sport and daily life demand.',
     icon: 'layers',
@@ -92,6 +102,7 @@ export const physiotherapyServices: Service[] = [
   {
     id: '11',
     title: 'Return-to-Sport Training',
+    tagline: 'The criteria-led final stage before competing',
     summary:
       'Criteria-led progression through the final stages — speed, change of direction, contact and sport-specific load.',
     icon: 'run',

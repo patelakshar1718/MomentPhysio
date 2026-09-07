@@ -9,6 +9,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 import { StepTimeline } from '@/components/StepTimeline';
 import { faqs } from '@/data/faqs';
 import { recoveryJourney, recoveryServices } from '@/data/recovery';
+import { slugify } from '@/lib/anchor';
 import { breadcrumbSchema, faqSchema, pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
@@ -55,7 +56,7 @@ export default function RecoveryCenterPage() {
       </section>
 
       {/* ── Modalities ────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="The modalities"
@@ -66,7 +67,7 @@ export default function RecoveryCenterPage() {
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {recoveryServices.map((service, i) => (
               <Reveal key={service.id} delay={(i % 3) * 70}>
-                <ServiceCard service={service} />
+                <ServiceCard service={service} anchorId={slugify(service.title)} />
               </Reveal>
             ))}
           </div>
@@ -88,7 +89,7 @@ export default function RecoveryCenterPage() {
       </section>
 
       {/* ── Safety ────────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y-sm">
+      <section data-surface="tint" className="section-y-sm">
         <div className="container-x">
           <Reveal className="rounded-2xl border border-accent-line bg-accent-soft p-7 lg:p-10">
             <p className="flex items-center gap-2.5 label-xs text-accent-text">

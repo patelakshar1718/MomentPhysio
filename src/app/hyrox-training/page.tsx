@@ -107,7 +107,7 @@ export default function HyroxTrainingPage() {
         </div>
       </section>
 
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="What preparation covers"

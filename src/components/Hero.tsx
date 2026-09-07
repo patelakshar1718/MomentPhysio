@@ -18,7 +18,7 @@ export function Hero() {
   return (
     <>
       <section
-        data-surface="teal"
+        data-surface="stone"
         className="relative isolate flex min-h-[38rem] items-center lg:min-h-[46rem]"
       >
         <HeroVideo slot="hero-home" />

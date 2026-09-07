@@ -6,6 +6,12 @@ export type Service = {
   title: string;
   /** Expanded/technical name shown under the title where one exists. */
   fullName?: string;
+  /**
+   * One short line for the navigation menu — a fragment, not a sentence, so a
+   * column of them scans. `summary` is the card's paragraph and is too long to
+   * sit under a menu label.
+   */
+  tagline?: string;
   summary: string;
   /** Bullet points shown when the card is expanded. */
   detail?: string[];

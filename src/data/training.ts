@@ -5,6 +5,7 @@ export const trainingServices: Service[] = [
   {
     id: '01',
     title: 'Personal Training',
+    tagline: 'One coach, one client, one plan',
     summary:
       'Individual strength and conditioning, coached in person, session by session. One coach, one client, one plan.',
     detail: [
@@ -18,6 +19,7 @@ export const trainingServices: Service[] = [
   {
     id: '02',
     title: 'Strength Training',
+    tagline: 'Progressively loaded strength and control',
     summary:
       'Build strength, control and functional capacity through structured, progressively loaded work.',
     detail: [
@@ -31,6 +33,7 @@ export const trainingServices: Service[] = [
   {
     id: '03',
     title: 'Stretching Lab',
+    tagline: 'Assisted 1-to-1 flexibility sessions',
     summary:
       'Dedicated 1-to-1 flexibility sessions — assisted, structured stretching rather than ten minutes tacked onto the end of a workout.',
     detail: [
@@ -44,6 +47,7 @@ export const trainingServices: Service[] = [
   {
     id: '04',
     title: 'Mobility Training',
+    tagline: 'Usable range you can control under load',
     summary:
       'Improve movement quality and usable range — mobility you can control under load, not just range you can demonstrate.',
     detail: [
@@ -57,6 +61,7 @@ export const trainingServices: Service[] = [
   {
     id: '05',
     title: 'Gluteal Lab',
+    tagline: 'Glute strength, hip stability and lower-body control',
     summary:
       'A focused block on glute strength, hip stability, lower-body control and the functional movement that depends on them.',
     detail: [
@@ -71,6 +76,7 @@ export const trainingServices: Service[] = [
   {
     id: '06',
     title: 'High-Intensity Training',
+    tagline: 'Supervised conditioning, scaled to you',
     summary:
       'Structured high-intensity conditioning, scaled to your current ability and supervised throughout.',
     detail: [

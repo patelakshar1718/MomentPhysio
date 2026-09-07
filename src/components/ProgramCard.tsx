@@ -2,9 +2,13 @@ import Link from 'next/link';
 import type { Program } from '@/data/types';
 import { Icon } from './Icon';
 
-export function ProgramCard({ program }: { program: Program }) {
+/** `anchorId` makes the card a link target for the Programs contents menu. */
+export function ProgramCard({ program, anchorId }: { program: Program; anchorId?: string }) {
   return (
-    <article className="card card-hover flex h-full flex-col p-7 lg:p-8">
+    <article
+      id={anchorId}
+      className="card card-hover flex h-full flex-col p-7 lg:p-8"
+    >
       <div className="flex items-start gap-4">
         <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent-text">
           <Icon name={program.icon} size={23} />

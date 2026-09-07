@@ -75,7 +75,7 @@ export default function MobilityTrainingPage() {
         </div>
       </section>
 
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader eyebrow="Common focus areas" title="Where Most People Are Restricted" />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

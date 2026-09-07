@@ -4,6 +4,7 @@ import { Footer } from '@/components/Footer';
 import { FloatingActions } from '@/components/FloatingActions';
 import { JsonLd } from '@/components/JsonLd';
 import { Navbar } from '@/components/Navbar';
+import { mainNav } from '@/config/nav';
 import { PlaceholderNotice } from '@/components/PlaceholderNotice';
 import { ThemeScript } from '@/components/ThemeScript';
 import { site } from '@/config/site';
@@ -74,10 +75,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#061c19' },
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-  ],
+  /* ThemeScript ignores the OS preference and defaults to light, so keying
+     this off prefers-color-scheme gave dark-OS visitors the wrong chrome. */
+  themeColor: '#ffffff',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -96,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
 
-        <Navbar />
+        <Navbar items={mainNav} />
         <main id="main">{children}</main>
         <Footer />
         <FloatingActions />

@@ -75,7 +75,7 @@ export default function SportsPerformancePage() {
       </section>
 
       {/* ── Programmes ────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="Programs"

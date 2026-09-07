@@ -35,7 +35,7 @@ export function PageHeader({
   chips,
 }: PageHeaderProps) {
   return (
-    <section data-surface="teal" className="relative isolate">
+    <section data-surface="stone" className="relative isolate">
       <HeroVideo slot={video} />
 
       <div className="over-video container-x pt-36 pb-16 lg:pt-48 lg:pb-28">

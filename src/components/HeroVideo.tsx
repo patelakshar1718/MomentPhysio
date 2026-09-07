@@ -9,8 +9,9 @@ import { hasVideo, videoMp4, videoPoster, videoWebm } from '@/lib/videos';
  *  - The poster <img> sits underneath the <video>, not just in the poster
  *    attribute, so the panel is never a flat colour while the clip downloads —
  *    and so reduced-motion visitors still get an image once CSS hides the video.
- *  - A teal scrim sits on top. The brand panel has to stay teal and the white
- *    copy has to keep its contrast; the video is texture, not the subject.
+ *  - A white scrim sits on top. The panel is light and the copy over it is
+ *    ink, so the wash lifts the frame rather than darkening it; the video is
+ *    texture, not the subject. Poster and clip are desaturated together.
  *  - No JavaScript. autoplay+muted+playsInline is enough on every current
  *    browser, and a hero should not wait on a client component to hydrate.
  */
@@ -22,7 +23,7 @@ export function HeroVideo({ slot }: { slot?: string }) {
       <img
         src={videoPoster(slot)}
         alt=""
-        className="absolute inset-0 h-full w-full object-cover"
+        className="hero-poster absolute inset-0 h-full w-full object-cover"
         loading="eager"
         decoding="async"
       />

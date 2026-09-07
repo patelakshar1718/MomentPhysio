@@ -12,6 +12,7 @@ export const recoveryServices: Service[] = [
   {
     id: '01',
     title: 'Sports Body Massage',
+    tagline: 'Pressure and focus set by your training load',
     summary:
       'Hands-on massage designed for active bodies — applied with the pressure, pace and focus your training load actually calls for.',
     detail: [
@@ -26,6 +27,7 @@ export const recoveryServices: Service[] = [
   {
     id: '02',
     title: 'Massage + Theragun',
+    tagline: 'Manual technique with percussive therapy',
     fullName: 'Manual Massage with Percussive Therapy',
     summary:
       'Manual technique combined with percussive therapy, used where a targeted, higher-frequency stimulus suits the tissue better than hands alone.',
@@ -41,6 +43,7 @@ export const recoveryServices: Service[] = [
   {
     id: '03',
     title: 'IASTM',
+    tagline: 'Instrument-assisted precision along fascia',
     fullName: 'Instrument-Assisted Soft Tissue Mobilization',
     summary:
       'A clinician-guided soft-tissue technique using specialised instruments to work along fascia and muscle with a level of precision the hand cannot match.',
@@ -56,6 +59,7 @@ export const recoveryServices: Service[] = [
   {
     id: '04',
     title: 'Ice Bath',
+    tagline: 'Supervised cold immersion at −3°C to −7°C',
     fullName: 'Cold Water Immersion · −3°C to −7°C',
     summary:
       'Supervised cold water immersion at a controlled temperature, used as a structured part of a recovery plan rather than as a stand-alone treatment.',
@@ -72,6 +76,7 @@ export const recoveryServices: Service[] = [
   {
     id: '05',
     title: 'Advanced Sauna',
+    tagline: 'Stone heat, infrared and magnesium salt',
     fullName: 'Stone Heat · Infrared · Magnesium Salt',
     summary:
       'A heat experience combining stone heat and infrared with magnesium salt — built as a premium relaxation and recovery environment.',
@@ -88,6 +93,7 @@ export const recoveryServices: Service[] = [
   {
     id: '06',
     title: 'Pneumatic Compression',
+    tagline: 'Sequential compression for legs, hips and arms',
     fullName: 'Sequential Compression Therapy',
     summary:
       'Sequential air compression applied to the legs, hips or arms, with pressure and cycle time set around your individual recovery requirement.',
@@ -103,6 +109,7 @@ export const recoveryServices: Service[] = [
   {
     id: '07',
     title: 'Red Light Therapy',
+    tagline: 'Short, structured photobiomodulation sessions',
     fullName: 'Photobiomodulation',
     summary:
       'A light-based recovery and wellness modality delivered in short, structured sessions as one component of a wider recovery plan.',
@@ -118,6 +125,7 @@ export const recoveryServices: Service[] = [
   {
     id: '08',
     title: 'Cupping Therapy',
+    tagline: 'Negative pressure within a soft tissue session',
     summary:
       'Negative-pressure cupping, incorporated into an individualised soft-tissue or recovery session where the assessment supports it.',
     detail: [
@@ -132,6 +140,7 @@ export const recoveryServices: Service[] = [
   {
     id: '09',
     title: 'Dry Needling',
+    tagline: 'Fine-needle work on specific myofascial points',
     summary:
       'A fine-needle technique directed at specific myofascial points, used as part of a physiotherapy plan rather than as a booked stand-alone service.',
     detail: [
@@ -147,6 +156,7 @@ export const recoveryServices: Service[] = [
   {
     id: '10',
     title: 'TECAR Therapy',
+    tagline: 'Energy transfer alongside manual therapy',
     fullName: 'Capacitive & Resistive Energy Transfer',
     summary:
       'An advanced physiotherapy modality that may be integrated into an individualised treatment plan, typically alongside manual therapy and exercise.',

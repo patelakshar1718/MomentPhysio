@@ -131,7 +131,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Locations ─────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="Find us"

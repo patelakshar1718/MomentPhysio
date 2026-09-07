@@ -2,16 +2,26 @@
 
 /* ==========================================================================
    MOVEMENT TEAM — DESIGN SYSTEM
-   Clinic-teal on white. Soft, rounded, editorial: a geometric sans for
-   structure, a high-contrast serif italic for the emphasised half of a
-   heading, and generous rounded panels that float on a white page.
+   Editorial mono: white and grey, no hue. A geometric sans for structure, a
+   high-contrast serif italic for the emphasised half of a heading, and
+   generous rounded panels that float on a white page.
+
+   One pure-neutral ramp supplies every colour in the system:
+     #ffffff #fafafa #f5f5f5 #eaeaea #e0e0e0 #d8d8d8
+     #8a8a8a #6f6f6f #5c5c5c #4f4f4f #2f2f2f #141414 #0d0d0e
 
    Three independent surface contexts:
      [data-theme]   — the visitor's light/dark preference (whole document)
-     [data-surface] — a section that pins itself: 'teal' (brand panel),
-                      'mint' (tinted panel), 'light' (plain white)
-   'dark' is kept as an alias of 'teal' so existing pages keep working.
-   Everything downstream reads the semantic vars, never a raw hex.
+     [data-surface] — a section that pins itself: 'stone' (the deepest light
+                      step, used by the six signature panels), 'tint' (the
+                      alternating band), 'light' (plain white)
+   'teal' and 'mint' are kept as aliases of 'stone' and 'tint' so any missed
+   usage keeps working. Everything downstream reads the semantic vars, never
+   a raw hex.
+
+   Note the rhythm is white → tint → stone. Because no surface is dark any
+   more, [data-theme='dark'] has to re-state each one; see the overrides at
+   the end of this layer.
    ========================================================================== */
 
 @layer base {
@@ -33,100 +43,185 @@
   [data-surface='light'] {
     --bg: #ffffff;
     --bg-elev: #ffffff;
-    --bg-elev-2: #eef6f3;
-    --bg-sunken: #e6f2ee;
+    --bg-elev-2: #f5f5f5;
+    --bg-sunken: #ededed;
 
-    --fg: #10201d;
-    --fg-muted: #55635f;
-    --fg-subtle: #6a7874;
+    --fg: #141414;
+    --fg-muted: #5c5c5c;
+    --fg-subtle: #6f6f6f;
 
-    --border: rgb(16 32 29 / 0.10);
-    --border-strong: rgb(16 32 29 / 0.24);
+    --border: rgb(20 20 20 / 0.10);
+    --border-strong: rgb(20 20 20 / 0.26);
 
-    --accent: #0e7b69;
-    --accent-hover: #0b6657;
+    /* Ink. --accent and --fg are deliberately the same value; the hover
+       states that used to rely on a hue shift now move to --accent-hover.  */
+    --accent: #141414;
+    --accent-hover: #2f2f2f;
     --accent-on: #ffffff;
-    --accent-text: #0e7b69;
-    --accent-soft: rgb(14 123 105 / 0.08);
-    --accent-line: rgb(14 123 105 / 0.24);
+    --accent-text: #141414;
+    --accent-soft: rgb(20 20 20 / 0.06);
+    --accent-line: rgb(20 20 20 / 0.20);
+
+    /* The only non-grey in the system, and it shows on keyboard focus only.
+       Set it to #141414 for a strictly two-tone palette. */
+    --focus: #2f6df6;
 
     --panel-radius: clamp(1.25rem, 2.2vw, 2rem);
-    --shadow-card: 0 1px 2px rgb(16 32 29 / 0.04), 0 18px 40px -28px rgb(16 32 29 / 0.35);
+    --shadow-card: 0 1px 2px rgb(20 20 20 / 0.05), 0 18px 40px -28px rgb(20 20 20 / 0.30);
     color-scheme: light;
   }
 
-  /* ---- BRAND TEAL PANEL -------------------------------------------------- */
-  /* Pinned per-section: hero, page headers, testimonials, footer, CTA band. */
-  [data-surface='teal'],
-  [data-surface='dark'] {
-    --bg: #0e7b69;
-    --bg-elev: #0c6d5d;
-    --bg-elev-2: #106e5f;
-    --bg-sunken: #0a5f52;
+  /* ---- STONE PANEL ------------------------------------------------------- */
+  /* The deepest light step. Pinned per-section: hero, page headers,
+     testimonials, footer, CTA band, 404 — the six sections that used to be
+     the dark teal ground. Dark copy on grey now, so color-scheme is light. */
+  [data-surface='stone'],
+  [data-surface='teal'] {
+    --bg: #eaeaea;
+    --bg-elev: #ffffff;
+    --bg-elev-2: #e0e0e0;
+    --bg-sunken: #d8d8d8;
 
-    --fg: #ffffff;
-    --fg-muted: rgb(255 255 255 / 0.82);
-    --fg-subtle: rgb(255 255 255 / 0.68);
+    --fg: #141414;
+    --fg-muted: #4f4f4f;
+    --fg-subtle: #5e5e5e;
 
-    --border: rgb(255 255 255 / 0.16);
-    --border-strong: rgb(255 255 255 / 0.34);
+    --border: rgb(20 20 20 / 0.12);
+    --border-strong: rgb(20 20 20 / 0.28);
 
-    --accent: #ffffff;
-    --accent-hover: #eafaf5;
-    --accent-on: #0b6657;
-    --accent-text: #ffffff;
-    --accent-soft: rgb(255 255 255 / 0.12);
-    --accent-line: rgb(255 255 255 / 0.32);
+    --accent: #141414;
+    --accent-hover: #2f2f2f;
+    --accent-on: #ffffff;
+    --accent-text: #141414;
+    /* A 6% ink wash would vanish on this grey, so chips read as white pills. */
+    --accent-soft: rgb(255 255 255 / 0.70);
+    --accent-line: rgb(20 20 20 / 0.20);
 
-    --shadow-card: 0 18px 40px -28px rgb(0 0 0 / 0.5);
-    color-scheme: dark;
+    --shadow-card: 0 1px 2px rgb(20 20 20 / 0.05), 0 18px 40px -28px rgb(20 20 20 / 0.35);
+    color-scheme: light;
   }
 
-  /* ---- MINT PANEL -------------------------------------------------------- */
+  /* ---- TINT PANEL -------------------------------------------------------- */
+  [data-surface='tint'],
   [data-surface='mint'] {
-    --bg: #e8f3ef;
+    --bg: #f5f5f5;
     --bg-elev: #ffffff;
-    --bg-elev-2: #dcece7;
-    --bg-sunken: #d3e6e0;
+    --bg-elev-2: #ebebeb;
+    --bg-sunken: #e2e2e2;
 
-    --fg: #10201d;
-    --fg-muted: #55635f;
-    --fg-subtle: #66746f;
+    --fg: #141414;
+    --fg-muted: #5c5c5c;
+    --fg-subtle: #6b6b6b;
 
-    --border: rgb(16 32 29 / 0.10);
-    --border-strong: rgb(16 32 29 / 0.24);
+    --border: rgb(20 20 20 / 0.10);
+    --border-strong: rgb(20 20 20 / 0.26);
 
-    --accent: #0e7b69;
-    --accent-hover: #0b6657;
+    --accent: #141414;
+    --accent-hover: #2f2f2f;
     --accent-on: #ffffff;
-    --accent-text: #0e7b69;
-    --accent-soft: rgb(14 123 105 / 0.10);
-    --accent-line: rgb(14 123 105 / 0.24);
+    --accent-text: #141414;
+    --accent-soft: rgb(20 20 20 / 0.06);
+    --accent-line: rgb(20 20 20 / 0.20);
     color-scheme: light;
   }
 
   /* ---- DARK PREFERENCE (whole document) ---------------------------------- */
   [data-theme='dark'] {
-    --bg: #061c19;
-    --bg-elev: #0a2723;
-    --bg-elev-2: #0d302a;
-    --bg-sunken: #041412;
+    --bg: #0d0d0e;
+    --bg-elev: #161617;
+    --bg-elev-2: #1e1e20;
+    --bg-sunken: #080809;
 
-    --fg: #edf6f3;
-    --fg-muted: #a3b6b1;
-    --fg-subtle: #8ba09a;
+    --fg: #f2f2f2;
+    --fg-muted: #a8a8a8;
+    --fg-subtle: #8f8f8f;
 
     --border: rgb(255 255 255 / 0.10);
-    --border-strong: rgb(255 255 255 / 0.24);
+    --border-strong: rgb(255 255 255 / 0.26);
 
-    --accent: #2fae95;
-    --accent-hover: #3cc4a9;
-    --accent-on: #04211c;
-    --accent-text: #56c9b1;
-    --accent-soft: rgb(47 174 149 / 0.14);
-    --accent-line: rgb(47 174 149 / 0.35);
+    --accent: #f2f2f2;
+    --accent-hover: #ffffff;
+    --accent-on: #0d0d0e;
+    --accent-text: #f2f2f2;
+    --accent-soft: rgb(255 255 255 / 0.10);
+    --accent-line: rgb(255 255 255 / 0.24);
+
+    --focus: #7aa2ff;
 
     --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 18px 40px -28px rgb(0 0 0 / 0.8);
+    color-scheme: dark;
+  }
+
+  /* ---- DARK PREFERENCE × PINNED SURFACES --------------------------------- */
+  /* Every [data-surface] block above is light. Without these, a dark-mode
+     visitor gets white panels punched into a black page. Each one mirrors the
+     light rhythm — stone is the step furthest from the page, tint sits just
+     off it, light is the floating nav pill. */
+  [data-theme='dark'] [data-surface='stone'],
+  [data-theme='dark'] [data-surface='teal'] {
+    --bg: #161617;
+    --bg-elev: #1e1e20;
+    --bg-elev-2: #242427;
+    --bg-sunken: #0d0d0e;
+
+    --fg: #f2f2f2;
+    --fg-muted: #a8a8a8;
+    --fg-subtle: #8f8f8f;
+
+    --border: rgb(255 255 255 / 0.12);
+    --border-strong: rgb(255 255 255 / 0.28);
+
+    --accent: #f2f2f2;
+    --accent-hover: #ffffff;
+    --accent-on: #0d0d0e;
+    --accent-text: #f2f2f2;
+    --accent-soft: rgb(255 255 255 / 0.10);
+    --accent-line: rgb(255 255 255 / 0.24);
+    color-scheme: dark;
+  }
+
+  [data-theme='dark'] [data-surface='tint'],
+  [data-theme='dark'] [data-surface='mint'] {
+    --bg: #121213;
+    --bg-elev: #1a1a1c;
+    --bg-elev-2: #202023;
+    --bg-sunken: #08080a;
+
+    --fg: #f2f2f2;
+    --fg-muted: #a8a8a8;
+    --fg-subtle: #8f8f8f;
+
+    --border: rgb(255 255 255 / 0.10);
+    --border-strong: rgb(255 255 255 / 0.26);
+
+    --accent: #f2f2f2;
+    --accent-hover: #ffffff;
+    --accent-on: #0d0d0e;
+    --accent-text: #f2f2f2;
+    --accent-soft: rgb(255 255 255 / 0.10);
+    --accent-line: rgb(255 255 255 / 0.24);
+    color-scheme: dark;
+  }
+
+  [data-theme='dark'] [data-surface='light'] {
+    --bg: #1c1c1e;
+    --bg-elev: #232326;
+    --bg-elev-2: #2a2a2d;
+    --bg-sunken: #141416;
+
+    --fg: #f2f2f2;
+    --fg-muted: #a8a8a8;
+    --fg-subtle: #8f8f8f;
+
+    --border: rgb(255 255 255 / 0.12);
+    --border-strong: rgb(255 255 255 / 0.28);
+
+    --accent: #f2f2f2;
+    --accent-hover: #ffffff;
+    --accent-on: #0d0d0e;
+    --accent-text: #f2f2f2;
+    --accent-soft: rgb(255 255 255 / 0.10);
+    --accent-line: rgb(255 255 255 / 0.24);
     color-scheme: dark;
   }
 }
@@ -210,7 +305,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--focus);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -227,10 +322,15 @@
     color: var(--fg);
   }
 
+  [data-surface='stone'],
   [data-surface='teal'],
-  [data-surface='dark'],
+  [data-surface='tint'],
   [data-surface='mint'] {
     border-radius: var(--panel-radius);
+    /* Grey-on-white is a far quieter edge than the old teal-on-white, so the
+       panel gets a hairline to define its rounded corner without adding
+       weight. */
+    box-shadow: inset 0 0 0 1px var(--border);
     /* Floats the panel off the white page on every side. Adjacent panels
        collapse their margins into one gutter, which is what we want. */
     margin: clamp(0.75rem, 1.6vw, 1.5rem);
@@ -419,14 +519,11 @@
     color: var(--fg);
   }
 
+  /* --fg and --accent are the same ink, so hovering to --accent would be a
+     no-op. --accent-hover is the visible lift; the icon disc stays put. */
   .btn-solid:hover {
-    background-color: var(--accent);
+    background-color: var(--accent-hover);
     color: var(--accent-on);
-  }
-
-  .btn-solid:hover > svg {
-    background-color: var(--accent-on);
-    color: var(--accent);
   }
 
   .btn-sm {
@@ -535,27 +632,55 @@
   }
 
   /* ---- Hero video -------------------------------------------------------- */
-  /* No brand tint: the footage keeps its own colour. This is a neutral shade
-     only — enough to hold white copy above 4.5:1 on a bright frame, heaviest on
-     the left where the headline sits and nearly clear on the right. */
+  /* A white wash, not a dark one: the panels are light now and the copy over
+     the footage is ink. High-alpha white compresses a bright frame and a dark
+     one alike toward white, so #141414 clears 4.5:1 either way. Heaviest on
+     the left where the headline sits, nearly clear on the right so the clip
+     still reads. */
+  /* The falloff is tied to where the copy actually ends. Below lg the block is
+     unconstrained and runs the full width, so the wash stays near-flat; at lg
+     `max-w-3xl` caps it around 63% and the right third can open up and show the
+     clip. Worst case either way is a black frame under the lede's muted grey,
+     which clears 4.5:1 at both breakpoints. */
   .hero-scrim {
     background:
       linear-gradient(
         96deg,
-        rgb(0 0 0 / 0.78) 0%,
-        rgb(0 0 0 / 0.62) 48%,
-        rgb(0 0 0 / 0.34) 100%
+        rgb(255 255 255 / 0.92) 0%,
+        rgb(255 255 255 / 0.86) 60%,
+        rgb(255 255 255 / 0.78) 100%
       ),
-      linear-gradient(to top, rgb(0 0 0 / 0.4) 0%, transparent 38%);
+      linear-gradient(to top, rgb(255 255 255 / 0.5) 0%, transparent 38%);
   }
 
-  /* Copy sitting directly on footage. The shade above handles the average
-     frame; this carries the letters through a bright one without darkening
-     the clip any further. */
+  @media (min-width: 1024px) {
+    .hero-scrim {
+      background:
+        linear-gradient(
+          96deg,
+          rgb(255 255 255 / 0.90) 0%,
+          rgb(255 255 255 / 0.80) 63%,
+          rgb(255 255 255 / 0.44) 100%
+        ),
+        linear-gradient(to top, rgb(255 255 255 / 0.5) 0%, transparent 38%);
+    }
+  }
+
+  /* Under a 90% white wash the clip's colour survives only as a faint cast
+     that fights the monochrome palette. Taking it to near-greyscale makes the
+     light hero read as a deliberate choice rather than a washed-out video. */
+  .hero-video,
+  .hero-poster {
+    filter: saturate(0.18) contrast(1.05);
+  }
+
+  /* Copy sitting directly on footage. The wash above handles the average
+     frame; this white glow carries the ink letters through a dark one without
+     lightening the clip any further. */
   .over-video {
     text-shadow:
-      0 1px 2px rgb(0 0 0 / 0.45),
-      0 2px 14px rgb(0 0 0 / 0.35);
+      0 1px 2px rgb(255 255 255 / 0.7),
+      0 2px 14px rgb(255 255 255 / 0.55);
   }
 
   .over-video .btn,

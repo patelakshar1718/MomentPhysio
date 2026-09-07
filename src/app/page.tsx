@@ -70,7 +70,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Three pillars ─────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y" aria-labelledby="pillars-heading">
+      <section data-surface="tint" className="section-y" aria-labelledby="pillars-heading">
         <div className="container-x">
           <SectionHeader
             align="center"
@@ -189,7 +189,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Programs ──────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y" aria-labelledby="programs-heading">
+      <section data-surface="tint" className="section-y" aria-labelledby="programs-heading">
         <div className="container-x">
           <SectionHeader
             align="center"
@@ -299,7 +299,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Reviews ───────────────────────────────────────────────────── */}
-      <section data-surface="teal" className="section-y" aria-labelledby="reviews-heading">
+      <section data-surface="stone" className="section-y" aria-labelledby="reviews-heading">
         <div className="container-x">
           <SectionHeader
             align="center"

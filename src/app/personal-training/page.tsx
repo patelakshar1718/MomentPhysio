@@ -9,6 +9,7 @@ import { SectionHeader } from '@/components/SectionHeader';
 import { ServiceCard } from '@/components/ServiceCard';
 import { faqs } from '@/data/faqs';
 import { trainingServices } from '@/data/training';
+import { slugify } from '@/lib/anchor';
 import { breadcrumbSchema, faqSchema, pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
@@ -88,7 +89,7 @@ export default function PersonalTrainingPage() {
       </section>
 
       {/* ── Services ──────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="What you can train"
@@ -99,7 +100,7 @@ export default function PersonalTrainingPage() {
           <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {trainingServices.map((service, i) => (
               <Reveal key={service.id} delay={(i % 3) * 70}>
-                <ServiceCard service={service} />
+                <ServiceCard service={service} anchorId={slugify(service.title)} />
               </Reveal>
             ))}
           </div>
@@ -160,7 +161,7 @@ export default function PersonalTrainingPage() {
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <SectionHeader eyebrow="Questions" title="Training FAQs" />

@@ -11,6 +11,7 @@ import { ServiceCard } from '@/components/ServiceCard';
 import { StepTimeline } from '@/components/StepTimeline';
 import { faqs } from '@/data/faqs';
 import { physioConditions, physioProcess, physiotherapyServices } from '@/data/physiotherapy';
+import { slugify } from '@/lib/anchor';
 import { breadcrumbSchema, faqSchema, pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
@@ -94,7 +95,7 @@ export default function PhysiotherapyPage() {
       </section>
 
       {/* ── Services ──────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="What is available"
@@ -105,7 +106,11 @@ export default function PhysiotherapyPage() {
           <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {physiotherapyServices.map((service, i) => (
               <Reveal key={service.id} delay={(i % 3) * 60}>
-                <ServiceCard service={service} variant="compact" />
+                <ServiceCard
+                  service={service}
+                  variant="compact"
+                  anchorId={slugify(service.title)}
+                />
               </Reveal>
             ))}
           </div>
@@ -127,7 +132,7 @@ export default function PhysiotherapyPage() {
       </section>
 
       {/* ── Combined care ─────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y-sm">
+      <section data-surface="tint" className="section-y-sm">
         <div className="container-x grid gap-10 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
             <SectionHeader

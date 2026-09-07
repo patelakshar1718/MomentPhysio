@@ -8,6 +8,12 @@ type ServiceCardProps = {
   service: Service;
   /** "detailed" adds the photo and an expandable panel; "compact" is a plain tile. */
   variant?: 'detailed' | 'compact';
+  /**
+   * DOM id making this card a link target for the menu's contents list.
+   * The offset on arrival comes from `scroll-padding-top` on <html>; a
+   * scroll-margin here would add to it rather than override it.
+   */
+  anchorId?: string;
 };
 
 /**
@@ -50,12 +56,12 @@ function CardVisual({ service, aspect }: { service: Service; aspect: string }) {
  * ("find in page" expands a closed <details> in modern browsers) for zero
  * JavaScript — which matters on a page rendering ten of these at once.
  */
-export function ServiceCard({ service, variant = 'detailed' }: ServiceCardProps) {
+export function ServiceCard({ service, variant = 'detailed', anchorId }: ServiceCardProps) {
   const hasPanel = Boolean(service.detail?.length || service.note);
 
   if (variant === 'compact') {
     return (
-      <div className="card card-hover group flex h-full flex-col p-3">
+      <div id={anchorId} className="card card-hover group flex h-full flex-col p-3">
         <CardVisual service={service} aspect="aspect-[16/10]" />
 
         <div className="flex flex-1 flex-col px-3 pt-5 pb-3">
@@ -73,7 +79,7 @@ export function ServiceCard({ service, variant = 'detailed' }: ServiceCardProps)
   }
 
   return (
-    <article className="card card-hover group flex h-full flex-col p-3">
+    <article id={anchorId} className="card card-hover group flex h-full flex-col p-3">
       <CardVisual service={service} aspect="aspect-[16/11]" />
 
       <div className="flex flex-1 flex-col px-3 pt-5 pb-3">

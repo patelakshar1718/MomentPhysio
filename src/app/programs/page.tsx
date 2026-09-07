@@ -42,14 +42,14 @@ export default function ProgramsPage() {
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {programs.map((program, i) => (
               <Reveal key={program.slug} delay={(i % 3) * 70}>
-                <ProgramCard program={program} />
+                <ProgramCard program={program} anchorId={program.slug} />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="Common to all of them"

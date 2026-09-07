@@ -72,7 +72,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Philosophy ────────────────────────────────────────────────── */}
-      <section data-surface="mint" className="section-y">
+      <section data-surface="tint" className="section-y">
         <div className="container-x">
           <SectionHeader
             eyebrow="The method"
@@ -102,7 +102,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Team ──────────────────────────────────────────────────────── */}
-      <section id="team" className="section-y scroll-mt-24" data-surface="mint">
+      <section id="team" className="section-y scroll-mt-24" data-surface="tint">
         <div className="container-x">
           <SectionHeader
             eyebrow="The team"

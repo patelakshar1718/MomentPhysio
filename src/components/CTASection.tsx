@@ -11,7 +11,7 @@ type CTASectionProps = {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  /** Background image slot; omitted by default — the band reads as flat teal. */
+  /** Background image slot; omitted by default — the band reads as flat grey. */
   image?: string;
 };
 
@@ -26,7 +26,7 @@ export function CTASection({
   image,
 }: CTASectionProps) {
   return (
-    <section data-surface="teal" className="relative isolate">
+    <section data-surface="stone" className="relative isolate">
       {image && (
         <div className="absolute inset-0 -z-10">
           <Media
@@ -37,7 +37,7 @@ export function CTASection({
             sizes="100vw"
             rounded={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b6657] via-[#0e7b69]/90 to-[#0e7b69]/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/92 to-[var(--bg)]/70" />
         </div>
       )}
 

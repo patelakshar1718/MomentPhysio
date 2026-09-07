@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <section data-surface="teal" className="relative isolate pt-24">
+    <section data-surface="stone" className="relative isolate pt-24">
       <HeroVideo slot="hero-home" />
 
       <div className="over-video container-x flex min-h-[70vh] flex-col justify-center py-20">
