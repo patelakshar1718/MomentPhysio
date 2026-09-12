@@ -50,3 +50,19 @@ export const instagramGrid = [
   'training-stretch',
   'performance-hyrox',
 ];
+
+/**
+ * A second, deliberately different set of eight for the home page's
+ * Instagram spotlight — none overlap `instagramGrid` above, so a visitor who
+ * scrolls from one to the other never sees the same frame twice.
+ */
+export const instagramSpotlight = [
+  'physio-manual-therapy',
+  'training-glutes',
+  'recovery-icebath',
+  'performance-agility',
+  'recovery-redlight',
+  'physio-injury-rehab',
+  'training-hiit',
+  'facility-recovery-2',
+];

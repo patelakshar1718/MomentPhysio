@@ -39,10 +39,15 @@ export default function ProgramsPage() {
 
       <section className="section-y">
         <div className="container-x">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="space-y-14 lg:space-y-20">
             {programs.map((program, i) => (
-              <Reveal key={program.slug} delay={(i % 3) * 70}>
-                <ProgramCard program={program} anchorId={program.slug} />
+              <Reveal key={program.slug}>
+                <ProgramCard
+                  program={program}
+                  variant="row"
+                  reversed={i % 2 === 1}
+                  anchorId={program.slug}
+                />
               </Reveal>
             ))}
           </div>

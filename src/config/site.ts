@@ -56,13 +56,6 @@ export const site = {
     youtube: '',
   },
 
-  /**
-   * Google Places ID for the build-time review fetch.
-   * Find it at https://developers.google.com/maps/documentation/places/web-service/place-id
-   * TODO: paste the Place ID for the primary centre.
-   */
-  googlePlaceId: '',
-
   openingHours: [
     { days: 'Monday — Saturday', hours: '9:00 AM — 10:00 PM' },
     { days: 'Sunday', hours: 'Closed' },
@@ -90,6 +83,13 @@ export type Location = {
   mapEmbedUrl: string;
   /** Plain link used by the "Get directions" button. */
   mapLink: string;
+  /**
+   * Google Places ID for this centre, used by the build-time review fetch
+   * (scripts/fetch-reviews.mjs) — reviews from every location with one set
+   * here are merged into a single feed. Find it at
+   * https://developers.google.com/maps/documentation/places/web-service/place-id
+   */
+  placeId?: string;
   note?: string;
 };
 
@@ -117,6 +117,7 @@ export const locations: Location[] = [
       'https://maps.google.com/maps?q=A%2F4%2C%20Second%20Floor%2C%20Ankur%20Rd%2C%20near%20Kalupur%20Bank%2C%20Prahalad%20Society%2C%20Naranpura%2C%20Ahmedabad%2C%20Gujarat%20380013&t=&z=16&ie=UTF8&iwloc=&output=embed',
     mapLink:
       'https://www.google.com/maps/search/?api=1&query=A%2F4%2C%20Second%20Floor%2C%20Ankur%20Rd%2C%20near%20Kalupur%20Bank%2C%20Prahalad%20Society%2C%20Naranpura%2C%20Ahmedabad%2C%20Gujarat%20380013',
+    placeId: 'ChIJ9fYgnWyFXjkRCnY1tQj1-1A',
   },
   {
     id: 'maninagar',
@@ -134,6 +135,7 @@ export const locations: Location[] = [
       'https://maps.google.com/maps?q=Rajratna%20Arcade%2C%20opp.%20Satyam%20Tower%2C%20Maninagar%20Railway%20Station%20Road%2C%20Maninagar%2C%20Ahmedabad%2C%20Gujarat%20380008&t=&z=16&ie=UTF8&iwloc=&output=embed',
     mapLink:
       'https://www.google.com/maps/search/?api=1&query=Rajratna%20Arcade%2C%20opp.%20Satyam%20Tower%2C%20Maninagar%20Railway%20Station%20Road%2C%20Maninagar%2C%20Ahmedabad%2C%20Gujarat%20380008',
+    placeId: 'ChIJrXmcT4SFXjkR20JQFf7tmnA',
   },
 ];
 

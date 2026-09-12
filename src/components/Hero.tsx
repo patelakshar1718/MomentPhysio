@@ -1,15 +1,20 @@
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import { site } from '@/config/site';
-import { HeroVideo } from './HeroVideo';
+import { HERO_SLIDE_SECONDS, heroSlides } from '@/data/heroSlides';
+import { HeroSlideshow } from './HeroSlideshow';
 import { Icon } from './Icon';
 
 /**
  * The first five seconds of the brand.
  *
- * Footage and words, nothing else: the clip runs full-bleed behind the panel
- * and the only thing over it is the proposition. No photo tiles compete with
- * the video, and no brand tint sits on top of it — just a neutral shade heavy
- * enough on the left to keep the headline legible on a bright frame.
+ * Footage and words: a four-frame slideshow (physio, assessment, training,
+ * recovery) runs full-bleed behind the panel, and the visible "headline" is
+ * that same list of four, one highlighted at a time as its frame comes up.
+ * The h1 carries the actual brand line for SEO/screen readers but is not
+ * shown — the animated list is what a sighted visitor sees. No photo tiles
+ * compete with the footage, and no brand tint sits on top — just a neutral
+ * shade heavy enough on the left to keep the copy legible on a bright frame.
  *
  * The strip below the panel is deliberately not statistics: every figure is a
  * fact about how the centre runs, not a marketing number.
@@ -21,20 +26,28 @@ export function Hero() {
         data-surface="stone"
         className="relative isolate flex min-h-[38rem] items-center lg:min-h-[46rem]"
       >
-        <HeroVideo slot="hero-home" />
+        <HeroSlideshow />
 
         <div className="container-x pt-36 pb-16 lg:pt-40 lg:pb-24">
           <div className="over-video max-w-3xl">
             <p className="chip chip-accent mb-7">
               <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-              1-to-1 only · {site.city}
+              Get Your Body Future Proof.
             </p>
 
-            <h1 className="display-xl">
-              Recover Better. Move Better.
-              <br />
-              <em>Perform Better.</em>
-            </h1>
+            <h1 className="sr-only">Recover Better. Move Better. Perform Better.</h1>
+
+            <ul className="display-xl">
+              {heroSlides.map((slide, i) => (
+                <li
+                  key={slide.slot}
+                  className="hero-slide-nav-item"
+                  style={{ '--slide-delay': `${i * HERO_SLIDE_SECONDS}s` } as CSSProperties}
+                >
+                  {slide.label}
+                </li>
+              ))}
+            </ul>
 
             <p className="lede mt-7">
               Personalized 1-to-1 physiotherapy, advanced recovery, personal training and sports
@@ -61,8 +74,9 @@ export function Hero() {
 
       {/* ── Proposition strip ─────────────────────────────────────────── */}
       <div className="container-x">
-        <dl className="grid grid-cols-2 gap-8 py-12 lg:grid-cols-4 lg:py-16">
+        <dl className="grid grid-cols-2 gap-8 py-12 lg:grid-cols-5 lg:py-16">
           {[
+            { term: '1L+', desc: 'Patients treated' },
             { term: '1:1', desc: 'Every single session' },
             { term: '3', desc: 'Physio · Recovery · Training' },
             { term: '10', desc: 'Recovery modalities' },

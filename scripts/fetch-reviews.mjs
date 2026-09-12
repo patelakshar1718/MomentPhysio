@@ -10,7 +10,9 @@
  *   1. Google Cloud console → enable "Places API (New)" → create an API key.
  *   2. Restrict the key to the Places API. Billing must be enabled; the free
  *      tier covers a weekly rebuild many times over.
- *   3. Put the Place ID in src/config/site.ts (googlePlaceId).
+ *   3. Put each centre's Place ID in its `placeId` field in
+ *      src/config/site.ts (`locations`). Every location with one set is
+ *      fetched and merged into a single feed.
  *   4. Set GOOGLE_PLACES_API_KEY in .env.local locally, and in your host's
  *      environment variables for production builds.
  *
@@ -18,8 +20,8 @@
  * logs a notice, leaves the existing JSON untouched, and exits 0 — the site
  * then renders its clearly-labelled placeholders instead.
  *
- * Note: the Places API returns a maximum of 5 reviews. That is Google's limit,
- * not a bug here.
+ * Note: the Places API returns a maximum of 5 reviews per place. That is
+ * Google's limit, not a bug here — with two centres, up to 10 total.
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -31,15 +33,34 @@ const OUT_FILE = path.join(ROOT, 'src', 'data', 'generated', 'reviews.json');
 
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
-/** Reads googlePlaceId out of the TS config without importing TypeScript. */
-async function readPlaceId() {
-  if (process.env.GOOGLE_PLACE_ID) return process.env.GOOGLE_PLACE_ID;
+/**
+ * Every Place ID to fetch, each paired with the location `id` it belongs to
+ * (for error messages only — the merged output does not keep them separate).
+ * `GOOGLE_PLACE_IDS` (comma-separated) overrides everything and is handy for
+ * testing a single ID without touching site.ts.
+ */
+async function readPlaceIds() {
+  if (process.env.GOOGLE_PLACE_IDS) {
+    return process.env.GOOGLE_PLACE_IDS.split(',')
+      .map((id) => id.trim())
+      .filter(Boolean)
+      .map((id) => ({ id: 'env', placeId: id }));
+  }
+  if (process.env.GOOGLE_PLACE_ID) {
+    return [{ id: 'env', placeId: process.env.GOOGLE_PLACE_ID }];
+  }
+
   try {
     const source = await readFile(path.join(ROOT, 'src', 'config', 'site.ts'), 'utf8');
-    const match = source.match(/googlePlaceId:\s*'([^']*)'/);
-    return match?.[1] ?? '';
+    const locationsBlock = source.match(/export const locations:[\s\S]*?\n\];/)?.[0] ?? '';
+    const entries = [...locationsBlock.matchAll(/id:\s*'([^']*)'/g)].map((m) => m[1]);
+    const placeIds = [...locationsBlock.matchAll(/placeId:\s*'([^']*)'/g)].map((m) => m[1]);
+    // Both regexes walk the same block in document order, so pairing by
+    // index only works because `id` always appears before `placeId` within
+    // each location object — true for every entry in site.ts today.
+    return placeIds.map((placeId, i) => ({ id: entries[i] ?? `location-${i}`, placeId }));
   } catch {
-    return '';
+    return [];
   }
 }
 
@@ -47,17 +68,7 @@ function notice(message) {
   console.log(`\n  ⓘ  Google reviews: ${message}\n`);
 }
 
-async function main() {
-  const placeId = await readPlaceId();
-
-  if (!API_KEY || !placeId) {
-    const missing = [!API_KEY && 'GOOGLE_PLACES_API_KEY', !placeId && 'googlePlaceId']
-      .filter(Boolean)
-      .join(' and ');
-    notice(`${missing} not set — keeping existing data, site will show placeholders.`);
-    return;
-  }
-
+async function fetchOne({ id, placeId }) {
   const url = `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`;
 
   let payload;
@@ -71,14 +82,14 @@ async function main() {
 
     if (!res.ok) {
       const body = await res.text();
-      notice(`API returned ${res.status}. Keeping existing data.\n     ${body.slice(0, 300)}`);
-      return;
+      notice(`${id}: API returned ${res.status}, skipping this location.\n     ${body.slice(0, 300)}`);
+      return null;
     }
 
     payload = await res.json();
   } catch (err) {
-    notice(`request failed (${err.message}). Keeping existing data.`);
-    return;
+    notice(`${id}: request failed (${err.message}), skipping this location.`);
+    return null;
   }
 
   const reviews = (payload.reviews ?? [])
@@ -92,16 +103,50 @@ async function main() {
     }))
     .filter((r) => r.text.trim().length > 0);
 
+  return { rating: payload.rating ?? null, totalRatings: payload.userRatingCount ?? null, reviews };
+}
+
+async function main() {
+  const placeIds = await readPlaceIds();
+
+  if (!API_KEY || placeIds.length === 0) {
+    const missing = [!API_KEY && 'GOOGLE_PLACES_API_KEY', placeIds.length === 0 && 'a placeId']
+      .filter(Boolean)
+      .join(' and ');
+    notice(`${missing} not set — keeping existing data, site will show placeholders.`);
+    return;
+  }
+
+  const results = (await Promise.all(placeIds.map(fetchOne))).filter(Boolean);
+
+  if (results.length === 0) {
+    notice('every location failed to fetch. Keeping existing data.');
+    return;
+  }
+
+  const reviews = results.flatMap((r) => r.reviews);
+
   if (reviews.length === 0) {
     notice('API responded but returned no reviews with text. Keeping existing data.');
     return;
   }
 
+  // Weighted average across locations, weighted by each one's own rating
+  // count — a 4.9★/200-review centre should outweigh a 4.5★/10-review one,
+  // not average with it 50/50.
+  const ratedResults = results.filter((r) => r.rating != null && r.totalRatings);
+  const totalRatings = ratedResults.reduce((sum, r) => sum + r.totalRatings, 0);
+  const rating = totalRatings
+    ? Math.round(
+        (ratedResults.reduce((sum, r) => sum + r.rating * r.totalRatings, 0) / totalRatings) * 10,
+      ) / 10
+    : null;
+
   const output = {
     fetchedAt: new Date().toISOString(),
-    placeId,
-    rating: payload.rating ?? null,
-    totalRatings: payload.userRatingCount ?? null,
+    placeIds: placeIds.map((p) => p.placeId),
+    rating,
+    totalRatings: totalRatings || null,
     reviews,
   };
 
@@ -109,8 +154,8 @@ async function main() {
   await writeFile(OUT_FILE, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
 
   console.log(
-    `\n  ✓  Google reviews: saved ${reviews.length} review(s), rating ${output.rating ?? '—'} ` +
-      `from ${output.totalRatings ?? '—'} ratings.\n`,
+    `\n  ✓  Google reviews: saved ${reviews.length} review(s) from ${results.length} location(s), ` +
+      `rating ${output.rating ?? '—'} from ${output.totalRatings ?? '—'} ratings.\n`,
   );
 }
 

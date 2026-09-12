@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "description": "Movement Team — Hybrid Physiotherapy, Recovery & Performance Center, Ahmedabad",
   "scripts": {
-    "prebuild": "node scripts/fetch-reviews.mjs",
+    "prebuild": "node --env-file-if-exists=.env.local scripts/fetch-reviews.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "npx serve out",
     "typecheck": "tsc --noEmit",
-    "reviews": "node scripts/fetch-reviews.mjs",
+    "reviews": "node --env-file-if-exists=.env.local scripts/fetch-reviews.mjs",
     "images": "node scripts/fetch-images.mjs && node scripts/optimise-images.mjs",
     "images:optimise": "node scripts/optimise-images.mjs",
     "videos": "node scripts/fetch-videos.mjs"

@@ -61,13 +61,18 @@ export default function RecoveryCenterPage() {
           <SectionHeader
             eyebrow="The modalities"
             title="Ten Ways To Recover"
-            lede="Expand any card to see what a session actually involves and the safety notes that apply to it."
+            lede="What a session actually involves, and the safety notes that apply to it, for each modality."
           />
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 space-y-14 lg:space-y-20">
             {recoveryServices.map((service, i) => (
-              <Reveal key={service.id} delay={(i % 3) * 70}>
-                <ServiceCard service={service} anchorId={slugify(service.title)} />
+              <Reveal key={service.id}>
+                <ServiceCard
+                  service={service}
+                  variant="row"
+                  reversed={i % 2 === 1}
+                  anchorId={slugify(service.title)}
+                />
               </Reveal>
             ))}
           </div>

@@ -6,8 +6,13 @@ import { Media } from './Media';
 
 type ServiceCardProps = {
   service: Service;
-  /** "detailed" adds the photo and an expandable panel; "compact" is a plain tile. */
-  variant?: 'detailed' | 'compact';
+  /**
+   * "detailed" adds the photo and an expandable panel; "compact" is a plain
+   * tile; "row" is a full-width photo-one-side/details-the-other block.
+   */
+  variant?: 'detailed' | 'compact' | 'row';
+  /** "row" only — alternates the photo to the opposite side. */
+  reversed?: boolean;
   /**
    * DOM id making this card a link target for the menu's contents list.
    * The offset on arrival comes from `scroll-padding-top` on <html>; a
@@ -56,8 +61,53 @@ function CardVisual({ service, aspect }: { service: Service; aspect: string }) {
  * ("find in page" expands a closed <details> in modern browsers) for zero
  * JavaScript — which matters on a page rendering ten of these at once.
  */
-export function ServiceCard({ service, variant = 'detailed', anchorId }: ServiceCardProps) {
+export function ServiceCard({
+  service,
+  variant = 'detailed',
+  reversed = false,
+  anchorId,
+}: ServiceCardProps) {
   const hasPanel = Boolean(service.detail?.length || service.note);
+
+  if (variant === 'row') {
+    return (
+      <div id={anchorId} className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+        <div className={`lg:col-span-5 ${reversed ? 'lg:order-2' : ''}`}>
+          <CardVisual service={service} aspect="aspect-[4/3]" />
+        </div>
+
+        <div className={`lg:col-span-7 ${reversed ? 'lg:order-1' : ''}`}>
+          <p className="index-num text-sm text-accent-text">{service.id}</p>
+          <h3 className="display-md mt-3">{service.title}</h3>
+          {service.fullName && (
+            <p className="mt-1.5 text-xs font-medium text-accent-text">{service.fullName}</p>
+          )}
+          <p className="mt-4 text-base leading-relaxed text-muted">{service.summary}</p>
+
+          {service.detail && (
+            <ul className="mt-5 space-y-2">
+              {service.detail.map((point) => (
+                <li key={point} className="flex gap-2.5 text-sm text-muted">
+                  <Icon name="check" size={14} className="mt-1 shrink-0 text-accent-text" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {service.note && (
+            <p className="mt-5 rounded-xl bg-elev-2 p-3 text-xs leading-relaxed text-subtle">
+              <span className="mb-1 flex items-center gap-1.5 font-semibold text-muted">
+                <Icon name="shieldCheck" size={13} />
+                Safety &amp; scope
+              </span>
+              {service.note}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   if (variant === 'compact') {
     return (

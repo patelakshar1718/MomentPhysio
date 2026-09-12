@@ -79,7 +79,7 @@ export function Navbar({ items }: { items: NavItem[] }) {
   return (
     <>
       <header className="absolute inset-x-0 top-0 z-50">
-        <div className="container-x pt-7 lg:pt-10">
+        <div className="container-x-wide pt-7 lg:pt-10">
           <nav
             data-surface="light"
             aria-label="Main"

@@ -24,7 +24,7 @@ Search for `TODO` and replace:
 | --- | --- | --- |
 | `site.url` | ❌ placeholder | `https://www.movementteam.in` — replace with your real domain |
 | `site.email` | ❌ placeholder | `hello@movementteam.in` does not exist yet |
-| `site.googlePlaceId` | ❌ empty | See "Google reviews" below |
+| `locations[].placeId` | ✅ set | Both centres — see "Google reviews" below |
 | `site.socials.facebook` / `.youtube` | ❌ empty | Empty links are hidden automatically, so this is safe to leave |
 | `site.phone` | ⚠️ assumption | Set to the **Naranpura** line (+91 70966 33936). Swap to +91 97379 33336 if Maninagar should be the site-wide number |
 | `locations[].mapEmbedUrl` | ⚠️ address search | Pins from the postal address. For an exact pin: Google Business → Share → Embed a map → copy `src` |
@@ -61,8 +61,10 @@ never reaches the browser.
 1. Google Cloud console → enable **Places API (New)** → create an API key.
 2. Restrict the key to the Places API. Billing must be on; a weekly rebuild sits
    far inside the free tier.
-3. Find your Place ID: <https://developers.google.com/maps/documentation/places/web-service/place-id>
-4. Paste it into `site.googlePlaceId`.
+3. Find each centre's Place ID: <https://developers.google.com/maps/documentation/places/web-service/place-id>
+4. Paste it into that location's `placeId` in `locations` (`src/config/site.ts`).
+   Every location with one set is fetched and merged into a single feed —
+   reviews are not split by centre on the site.
 5. Create `.env.local` (copy `.env.example`) and set `GOOGLE_PLACES_API_KEY`.
 6. Set the same variable in your host's environment variables.
 
@@ -70,9 +72,10 @@ never reaches the browser.
 npm run reviews      # fetch now, without a full build
 ```
 
-Google returns **a maximum of 5 reviews** — that is their limit, not a bug.
-Until this is configured the site shows clearly-labelled placeholders that state
-they are placeholders. It never invents testimonials.
+Google returns **a maximum of 5 reviews per location** — that is their limit,
+not a bug; with two centres, up to 10 total. Until this is configured the site
+shows clearly-labelled placeholders that state they are placeholders. It never
+invents testimonials.
 
 ### 5. Get the legal pages reviewed
 

@@ -1,6 +1,6 @@
 {
   "fetchedAt": null,
-  "placeId": null,
+  "placeIds": [],
   "rating": null,
   "totalRatings": null,
   "reviews": []

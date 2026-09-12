@@ -97,10 +97,15 @@ export default function PersonalTrainingPage() {
             lede="Most clients combine two or three of these across a training block, rather than picking one and staying there."
           />
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 space-y-14 lg:space-y-20">
             {trainingServices.map((service, i) => (
-              <Reveal key={service.id} delay={(i % 3) * 70}>
-                <ServiceCard service={service} anchorId={slugify(service.title)} />
+              <Reveal key={service.id}>
+                <ServiceCard
+                  service={service}
+                  variant="row"
+                  reversed={i % 2 === 1}
+                  anchorId={slugify(service.title)}
+                />
               </Reveal>
             ))}
           </div>

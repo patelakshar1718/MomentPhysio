@@ -2,8 +2,76 @@ import Link from 'next/link';
 import type { Program } from '@/data/types';
 import { Icon } from './Icon';
 
-/** `anchorId` makes the card a link target for the Programs contents menu. */
-export function ProgramCard({ program, anchorId }: { program: Program; anchorId?: string }) {
+type ProgramCardProps = {
+  program: Program;
+  /** "grid" is the plain tile; "row" is a full-width icon-one-side/details-the-other block. */
+  variant?: 'grid' | 'row';
+  /** "row" only — alternates the icon panel to the opposite side. */
+  reversed?: boolean;
+  /** `anchorId` makes the card a link target for the Programs contents menu. */
+  anchorId?: string;
+};
+
+function ProgramVisual({ program }: { program: Program }) {
+  return (
+    <div
+      aria-hidden="true"
+      className="media-round flex aspect-[4/3] items-center justify-center bg-elev-2"
+    >
+      <Icon name={program.icon} size={48} className="text-accent-text" />
+    </div>
+  );
+}
+
+export function ProgramCard({ program, variant = 'grid', reversed = false, anchorId }: ProgramCardProps) {
+  if (variant === 'row') {
+    return (
+      <div id={anchorId} className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
+        <div className={`lg:col-span-5 ${reversed ? 'lg:order-2' : ''}`}>
+          <ProgramVisual program={program} />
+        </div>
+
+        <div className={`lg:col-span-7 ${reversed ? 'lg:order-1' : ''}`}>
+          <h3 className="display-md mt-3">{program.title}</h3>
+          <p className="mt-1.5 text-xs leading-relaxed text-subtle">{program.audience}</p>
+          <p className="mt-4 text-base leading-relaxed text-muted">{program.summary}</p>
+
+          <div className="mt-6">
+            <p className="label-xs">The pathway</p>
+            <ol className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-2">
+              {program.stages.map((stage, i) => (
+                <li key={stage} className="flex items-center gap-1.5">
+                  <span className="chip">{stage}</span>
+                  {i < program.stages.length - 1 && (
+                    <Icon name="arrowRight" size={13} className="text-subtle" aria-hidden="true" />
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <ul className="mt-6 space-y-2 border-t border-line pt-5">
+            {program.outcomes.map((outcome) => (
+              <li key={outcome} className="flex gap-2.5 text-sm text-muted">
+                <Icon name="check" size={14} className="mt-1 shrink-0 text-accent-text" />
+                <span>{outcome}</span>
+              </li>
+            ))}
+          </ul>
+
+          <Link
+            href={`/contact?program=${program.slug}#book`}
+            className="link-arrow mt-7"
+            aria-label={`Book a 1-to-1 assessment for ${program.title}`}
+          >
+            Start with an assessment
+            <Icon name="arrowRight" size={15} />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <article
       id={anchorId}

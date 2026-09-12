@@ -103,12 +103,13 @@ export default function PhysiotherapyPage() {
             lede="Techniques are selected from what the assessment shows — not applied as a fixed package."
           />
 
-          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 space-y-14 lg:space-y-20">
             {physiotherapyServices.map((service, i) => (
-              <Reveal key={service.id} delay={(i % 3) * 60}>
+              <Reveal key={service.id}>
                 <ServiceCard
                   service={service}
-                  variant="compact"
+                  variant="row"
+                  reversed={i % 2 === 1}
                   anchorId={slugify(service.title)}
                 />
               </Reveal>

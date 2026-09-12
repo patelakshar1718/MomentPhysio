@@ -8,12 +8,15 @@ import generated from './generated/reviews.json';
  * `npm run build`. Until a Place ID and API key are configured it stays empty,
  * and the site falls back to the clearly-labelled placeholders below.
  *
+ * Every location in `locations` (src/config/site.ts) with a `placeId` set is
+ * fetched and merged into one feed — reviews are not split by centre.
+ *
  * Nothing here is ever presented as a real review unless it came from Google.
  * ==========================================================================*/
 
 type GeneratedReviews = {
   fetchedAt: string | null;
-  placeId: string | null;
+  placeIds: string[];
   rating: number | null;
   totalRatings: number | null;
   reviews: Review[];
@@ -44,7 +47,7 @@ export const placeholderReviews: Review[] = [
   {
     author: 'Placeholder review',
     rating: 5,
-    text: 'Add your Google Business Profile Place ID to src/config/site.ts and set GOOGLE_PLACES_API_KEY, then run npm run reviews.',
+    text: 'Add each centre’s Google Place ID to its entry in the `locations` array in src/config/site.ts and set GOOGLE_PLACES_API_KEY, then run npm run reviews.',
     relativeTime: 'awaiting setup',
     source: 'placeholder',
   },
